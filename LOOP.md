@@ -54,6 +54,28 @@ Ask for approval before:
 - Adding login.
 - Touching unrelated features.
 
+## Natural Language Commands
+
+The user does not need to reply with `1`, `2`, or `3` exactly.
+
+Accept commands such as:
+- `continue`
+- `go next`
+- `approved`
+- `do it`
+- `build it`
+- `looks good, continue`
+- `fix it`
+- `polish this`
+- `stop`
+- Custom feedback from the user
+
+When the user says `continue` or `go next`, proceed with the next natural step from the current roadmap or current task.
+
+When the user says `approved`, `do it`, or `build it`, implement the plan that was just proposed.
+
+When the user gives custom feedback, follow the feedback and keep the change inside the current scope.
+
 ## Hard Restrictions
 
 - No backend unless approved.
@@ -88,3 +110,5 @@ Next Step Options
 2. Polish or test the current step.
 3. Stop for review or custom feedback.
 ```
+
+The numbers are suggestions, not mandatory commands. Natural language replies are accepted.

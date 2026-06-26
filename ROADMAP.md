@@ -51,7 +51,7 @@ Files likely involved:
 
 ## Loop 1: Storage Core
 
-Status: Not started
+Status: Done
 
 Goal:
 Create a clean localStorage layer.
@@ -79,7 +79,7 @@ Files likely involved:
 
 ## Loop 2: Daily Loot Logic
 
-Status: Not started
+Status: Done
 
 Goal:
 Generate today's learning set.
@@ -110,7 +110,7 @@ Files likely involved:
 
 ## Loop 3: Word Loot Interaction
 
-Status: Not started
+Status: Done
 
 Goal:
 Make Word Loot usable.
@@ -137,7 +137,7 @@ Files likely involved:
 
 ## Loop 4: Real Talk Practice
 
-Status: Not started
+Status: Done
 
 Goal:
 Practice common phrases and reduced speech.
@@ -162,7 +162,7 @@ Files likely involved:
 
 ## Loop 5: Gamer Comms Practice
 
-Status: Not started
+Status: Done
 
 Goal:
 Practice Valorant and chat English.
@@ -184,7 +184,7 @@ Files likely involved:
 
 ## Loop 6: Listen & Type
 
-Status: Not started
+Status: Done
 
 Goal:
 User listens and types what they hear.
@@ -209,7 +209,7 @@ Files likely involved:
 
 ## Loop 7: Mistake Book
 
-Status: Not started
+Status: Done
 
 Goal:
 Show saved mistakes.
@@ -231,7 +231,7 @@ Files likely involved:
 
 ## Loop 8: Boss Test
 
-Status: Not started
+Status: Done
 
 Goal:
 Weekly mini test.
@@ -260,7 +260,7 @@ Files likely involved:
 
 ## Loop 9: Video Farm
 
-Status: Not started
+Status: Done
 
 Goal:
 Show recommended listening sources.
@@ -282,7 +282,7 @@ Files likely involved:
 
 ## Loop 10: Polish
 
-Status: Not started
+Status: Done
 
 Goal:
 Final MVP polish.

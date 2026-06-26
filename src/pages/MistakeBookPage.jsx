@@ -1,34 +1,148 @@
+import { useState } from 'react';
 import Card from '../components/Card.jsx';
 import PageHeader from '../components/PageHeader.jsx';
-import { getProgress } from '../lib/storage.js';
+import { clearMistakes, getProgress, removeMistake } from '../lib/storage.js';
+
+function normalizeText(value) {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/[^\w\s']/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function groupMistakes(mistakes) {
+  return (Array.isArray(mistakes) ? mistakes : []).reduce((groups, mistake) => {
+    const type = mistake?.type || 'practice';
+    return {
+      ...groups,
+      [type]: [...(groups[type] || []), mistake],
+    };
+  }, {});
+}
+
+const secondaryButtonClass =
+  'h-10 rounded-xl border border-loot-border bg-loot-card px-4 text-sm font-medium text-loot-text transition-colors hover:bg-loot-selected';
+const ghostButtonClass = 'h-10 rounded-xl px-4 text-sm font-medium text-loot-muted transition-colors hover:bg-loot-selected';
 
 export default function MistakeBookPage() {
-  const progress = getProgress();
+  const [progress, setProgress] = useState(() => getProgress());
+  const [retryId, setRetryId] = useState('');
+  const [retryAnswers, setRetryAnswers] = useState({});
+  const [retryResults, setRetryResults] = useState({});
+  const mistakeGroups = groupMistakes(progress.mistakes);
+  const groupEntries = Object.entries(mistakeGroups);
+
+  function handleRemove(mistakeId) {
+    setProgress(removeMistake(mistakeId));
+  }
+
+  function handleClear() {
+    if (typeof window !== 'undefined' && !window.confirm('Clear all mistakes?')) {
+      return;
+    }
+
+    setProgress(clearMistakes());
+    setRetryId('');
+    setRetryAnswers({});
+    setRetryResults({});
+  }
+
+  function handleRetryCheck(mistake) {
+    const answer = retryAnswers[mistake.id] || '';
+    const isCorrect = normalizeText(answer) === normalizeText(mistake.target);
+
+    setRetryResults((current) => ({
+      ...current,
+      [mistake.id]: isCorrect ? 'Correct. You can remove this mistake when ready.' : 'Not yet. Try again slowly.',
+    }));
+  }
 
   return (
     <>
-      <PageHeader
-        eyebrow="Mistake Book"
-        title="Sổ lỗi cá nhân"
-        description="Các câu nghe sai, từ khó và lỗi ngữ pháp sẽ được gom ở đây để luyện lại."
-      />
-
-      <Card>
+      <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+        <PageHeader
+          eyebrow="Mistake Book"
+          title="Personal mistake book"
+          description="Review wrong answers from listening, real talk, gamer comms, vocabulary, and grammar practice."
+        />
         {progress.mistakes.length > 0 ? (
-          <ul className="space-y-3">
-            {progress.mistakes.map((mistake) => (
-              <li key={mistake.id} className="rounded-2xl bg-loot-selected p-4">
-                <p className="text-base font-medium text-loot-text">{mistake.target}</p>
-                <p className="mt-1 text-sm font-normal text-loot-muted">{mistake.type}</p>
-              </li>
-            ))}
-          </ul>
-        ) : (
+          <button className={ghostButtonClass} type="button" onClick={handleClear}>
+            Clear all
+          </button>
+        ) : null}
+      </div>
+
+      {groupEntries.length > 0 ? (
+        <div className="space-y-4">
+          {groupEntries.map(([type, mistakes]) => (
+            <Card key={type} className="p-5">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h3 className="text-base font-medium text-loot-text">{type}</h3>
+                <span className="rounded-[40px] border border-loot-border bg-loot-selected px-3 py-1 text-sm font-normal text-loot-muted">
+                  {mistakes.length} saved
+                </span>
+              </div>
+
+              <div className="mt-4 space-y-3">
+                {mistakes.map((mistake) => (
+                  <div key={mistake.id} className="rounded-[20px] border border-loot-border bg-loot-selected p-4">
+                    <p className="text-sm font-medium text-loot-text">{mistake.target}</p>
+                    {mistake.userAnswer ? (
+                      <p className="mt-2 text-sm font-normal leading-6 text-loot-muted">
+                        Your answer: {mistake.userAnswer}
+                      </p>
+                    ) : null}
+
+                    {retryId === mistake.id ? (
+                      <div className="mt-4">
+                        <input
+                          className="h-10 w-full rounded-xl border border-loot-border bg-loot-card px-3 text-sm font-normal text-loot-text outline-none focus:bg-loot-selected"
+                          placeholder="Type the correct answer..."
+                          value={retryAnswers[mistake.id] || ''}
+                          onChange={(event) =>
+                            setRetryAnswers((current) => ({
+                              ...current,
+                              [mistake.id]: event.target.value,
+                            }))
+                          }
+                        />
+                        {retryResults[mistake.id] ? (
+                          <p className="mt-2 text-sm font-medium leading-6 text-loot-text">{retryResults[mistake.id]}</p>
+                        ) : null}
+                      </div>
+                    ) : null}
+
+                    <div className="mt-4 flex flex-wrap gap-3">
+                      <button
+                        className={secondaryButtonClass}
+                        type="button"
+                        onClick={() => setRetryId(retryId === mistake.id ? '' : mistake.id)}
+                      >
+                        Retry
+                      </button>
+                      {retryId === mistake.id ? (
+                        <button className={secondaryButtonClass} type="button" onClick={() => handleRetryCheck(mistake)}>
+                          Check retry
+                        </button>
+                      ) : null}
+                      <button className={ghostButtonClass} type="button" onClick={() => handleRemove(mistake.id)}>
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          ))}
+        </div>
+      ) : (
+        <Card>
           <p className="text-sm font-normal leading-6 text-loot-muted">
-            Chưa có lỗi nào. Khi bạn làm sai ở Listen & Type hoặc quiz, app sẽ lưu vào đây.
+            No mistakes yet. Wrong quiz or listening answers will appear here for review.
           </p>
-        )}
-      </Card>
+        </Card>
+      )}
     </>
   );
 }

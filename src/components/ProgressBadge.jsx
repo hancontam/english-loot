@@ -1,11 +1,11 @@
 import StatPill from './StatPill.jsx';
 
-export default function ProgressBadge({ progress }) {
+export default function ProgressBadge({ progress = {}, todayProgress = '0/4' }) {
   const stats = [
-    { label: 'Level', value: progress.level },
-    { label: 'EXP', value: progress.exp },
-    { label: 'Streak', value: progress.streak },
-    { label: 'Today progress', value: '0/4' },
+    { label: 'Level', value: progress.level ?? 1 },
+    { label: 'EXP', value: progress.exp ?? 0 },
+    { label: 'Streak', value: progress.streak ?? 0 },
+    { label: 'Today progress', value: todayProgress },
   ];
 
   return (

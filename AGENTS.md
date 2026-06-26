@@ -134,6 +134,27 @@ Ask for approval before:
 
 Do not ask for approval for tiny obvious fixes inside an already approved request.
 
+Natural language commands are valid.
+The user does not need to reply with `1`, `2`, or `3` exactly.
+
+Accept commands such as:
+- `continue`
+- `go next`
+- `approved`
+- `do it`
+- `build it`
+- `looks good, continue`
+- `fix it`
+- `polish this`
+- `stop`
+- Custom feedback from the user
+
+When the user says `continue` or `go next`, proceed with the next natural step from the current roadmap or current task.
+
+When the user says `approved`, `do it`, or `build it`, implement the plan that was just proposed.
+
+When the user gives custom feedback, follow the feedback and keep the change inside the current scope.
+
 ## Simple Pipeline Workflow
 
 Use this workflow for project work.
@@ -212,3 +233,5 @@ Next Step Options
 2. Polish or test the current step.
 3. Stop for review or custom feedback.
 ```
+
+The numbers are suggestions, not mandatory commands. Natural language replies are accepted.
