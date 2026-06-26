@@ -1,96 +1,90 @@
-# English Loot Loop Protocol
+# English Loot Simple Pipeline
 
-This file defines the required human-in-the-loop workflow for English Loot.
+Use this pipeline for English Loot work.
 
-The agent must stop after every loop.
-The agent must not continue without user approval.
+Do not overcomplicate the loop.
+Stop and wait after reporting.
 
-## 1. Plan
+## Stage 1: Understand
 
-Before coding, the agent must:
-- Read `AGENTS.md`, `ROADMAP.md`, and `LOOP.md`.
-- Read the relevant source files.
-- Identify the current state.
-- Select only one roadmap loop or one approved substep.
+- Read the user request.
+- Read relevant project files.
+- Identify the real goal.
+- If the request is unclear, ask before coding.
+
+## Stage 2: Plan
+
+- Make a short plan.
 - List files that may change.
-- List risks.
-- List acceptance criteria.
+- List the expected result.
+- Keep the plan practical and short.
 
-The agent must not code during the planning stage.
+## Stage 3: Build
 
-## 2. Approve
-
-After planning, the agent must stop and ask the user to approve the plan.
-
-The agent must not implement until the user approves.
-
-## 3. Act
-
-After approval, the agent may implement only the approved scope.
-
-Rules:
-- Do not add extra features.
+- Implement the approved request.
+- Fix the root cause, not only the visible symptom.
+- If a bug comes from a shared component, fix the shared component.
 - Do not redesign unrelated UI.
-- Do not edit unrelated files.
-- Do not change data structures unless the approved loop requires it.
-- Do not move to another roadmap item.
+- Do not change unrelated logic.
 
-## 4. Verify
+## Stage 4: Check
 
-After acting, the agent must run relevant checks.
+- Run `npm run build` when code changes.
+- If it is a UI change, tell the user what to check in the browser.
 
-Minimum verification:
-- `npm run build`
+## Stage 5: Report
 
-For UI changes:
-- Tell the user what to check visually in the browser.
-- Use the in-app browser for a smoke check when appropriate.
+- Report changed files.
+- Report what changed.
+- Report build result.
+- Report any remaining risk.
+- Give 2 or 3 next-step options.
+- Stop and wait.
 
-## 5. Report
+## Approval Rules
 
-The agent must report:
-- Changed files.
-- What was implemented.
-- Verification result.
-- Any limitation or known issue.
+Do not ask for approval for tiny obvious fixes inside the approved request.
 
-## 6. Options
+Ask for approval before:
+- Adding a library.
+- Changing architecture.
+- Changing data structure.
+- Redesigning UI.
+- Adding backend.
+- Adding login.
+- Touching unrelated features.
 
-The agent must give exactly three next-step options:
+## Hard Restrictions
 
-1. Continue with the next natural substep.
-2. Improve, test, or polish the current step.
-3. Stop for manual review or accept custom feedback.
+- No backend unless approved.
+- No login unless approved.
+- No database unless approved.
+- No new UI library unless approved.
+- No redesign unless approved.
+- Preserve the approved English Loot UI direction.
 
-## 7. Wait
-
-After giving options, the agent must stop and wait.
-
-The agent must not continue automatically.
-
-## Required Output Format
+## Output Format After Work
 
 ```md
-### Step Completed
+Step Completed
 
-Shortly state what was completed.
+Short summary.
 
-### Changed Files
+Changed Files
 
-List only files that changed.
+List changed files.
 
-### Verification
+Verification
 
-State what command was run and result.
-If not run, explain why.
+Command run and result.
 
-### What To Check
+What To Check
 
-Tell the user what to check in the browser or code.
+What the user should check.
 
-### Next Step Options
+Next Step Options
 
-1. Continue with the next natural substep.
-2. Improve, test, or polish the current step.
-3. Stop for manual review or accept custom feedback.
+1. Continue with the next natural step.
+2. Polish or test the current step.
+3. Stop for review or custom feedback.
 ```

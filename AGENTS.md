@@ -123,83 +123,60 @@ Do not:
 - Continue to the next loop without approval.
 - Rebuild the app from scratch.
 
-## Required Loop Protocol
+Ask for approval before:
+- Adding a library.
+- Changing architecture.
+- Changing data structure.
+- Redesigning UI.
+- Adding backend.
+- Adding login.
+- Touching unrelated features.
 
-Every feature must follow this loop:
+Do not ask for approval for tiny obvious fixes inside an already approved request.
 
-1. Read
-   - Read `AGENTS.md`, `ROADMAP.md`, and `LOOP.md`.
-   - Read relevant source files.
-   - Identify current state.
+## Simple Pipeline Workflow
 
-2. Plan
-   - Create a small plan for the selected roadmap item.
-   - Break it into substeps.
-   - List files that may change.
-   - List risks.
-   - List acceptance criteria.
-   - Do not code yet.
+Use this workflow for project work.
 
-3. Ask for Approval
-   - Stop and ask the user to approve the plan.
-   - Do not implement until the user approves.
+### Stage 1: Understand
 
-4. Act
-   - Implement only the approved substep or approved roadmap item.
-   - Do not add extra features.
-   - Do not redesign unrelated UI.
+- Read the user request.
+- Read relevant project files.
+- Identify the real goal.
+- If the request is unclear, ask before coding.
 
-5. Verify
-   - Run relevant checks.
-   - At minimum, run `npm run build`.
-   - If a visual UI change was made, tell the user what to check in the browser.
+### Stage 2: Plan
 
-6. Report
-   - Report changed files.
-   - Report what was implemented.
-   - Report verification result.
-   - Report any limitation or known issue.
+- Make a short plan.
+- List files that may change.
+- List the expected result.
+- Keep the plan practical and short.
 
-7. Options
-   - Give the user 3 next-step options.
-   - Stop and wait.
+### Stage 3: Build
 
-The agent must stop after every loop and must not continue without user approval.
+- Implement the approved request.
+- Fix the root cause, not only the visible symptom.
+- If a bug comes from a shared component, fix the shared component.
+- Do not redesign unrelated UI.
+- Do not change unrelated logic.
+
+### Stage 4: Check
+
+- Run `npm run build` when code changes.
+- If it is a UI change, tell the user what to check in the browser.
+
+### Stage 5: Report
+
+- Report changed files.
+- Report what changed.
+- Report build result.
+- Report any remaining risk.
+- Give 2 or 3 next-step options.
+- Stop and wait.
 
 ## Decision Mode
 
-If anything is unclear, stop and ask.
-
-Use this format:
-
-Question:
-Ask the exact question.
-
-Options:
-A. Option name
-What it means.
-Pros.
-Cons.
-When to choose it.
-
-B. Option name
-What it means.
-Pros.
-Cons.
-When to choose it.
-
-C. Option name
-What it means.
-Pros.
-Cons.
-When to choose it.
-
-Recommended choice:
-Recommend one option and explain why.
-
-Do not implement until the user approves.
-
-Ask only questions that affect the result. Do not ask vague questions. Do not ask too many questions at once.
+If anything is unclear, stop and ask a specific question before coding. Ask only questions that affect the result.
 
 ## Build Commands
 
@@ -208,33 +185,30 @@ Ask only questions that affect the result. Do not ask vague questions. Do not as
 - `npm run build`
 - `npm run preview`
 
-## Mandatory Output Format
+## Output Format After Work
 
-After every step, use:
+Use this format after work:
 
 ```md
-### Step Completed
+Step Completed
 
-Shortly state what was completed.
+Short summary.
 
-### Changed Files
+Changed Files
 
-List only files that changed.
+List changed files.
 
-### Verification
+Verification
 
-State what command was run and result.
-If not run, explain why.
+Command run and result.
 
-### What To Check
+What To Check
 
-Tell the user what to check in the browser or code.
+What the user should check.
 
-### Next Step Options
+Next Step Options
 
-1. Continue with the next natural substep.
-2. Improve, test, or polish the current step.
-3. Stop for manual review or accept custom feedback.
+1. Continue with the next natural step.
+2. Polish or test the current step.
+3. Stop for review or custom feedback.
 ```
-
-Wait for the user to choose 1, 2, 3, or give custom feedback.
