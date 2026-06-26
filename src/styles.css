@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --loot-text: #181818;
+  --loot-muted: #6a6a6a;
+  --loot-page: #f7f7f5;
+  --loot-card: #ffffff;
+  --loot-border: #eceae7;
+  --loot-selected: #f1f0ed;
+  --loot-placeholder: #a0a0a0;
+  color-scheme: light;
+  font-family: 'Open Sans', Arial, ui-sans-serif, system-ui, sans-serif;
+  background: var(--loot-page);
+  color: var(--loot-text);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--loot-page);
+  color: var(--loot-text);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+button,
+a,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  font-weight: 500;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--loot-text);
+  outline-offset: 4px;
+}
+
+::selection {
+  background: var(--loot-selected);
+  color: var(--loot-text);
+}

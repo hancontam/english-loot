@@ -1,0 +1,42 @@
+[
+  {
+    "id": "p001",
+    "phrase": "nvm",
+    "full": "never mind",
+    "meaning": "thôi bỏ đi",
+    "context": "chat",
+    "example": "nvm, just save.",
+    "translation": "Thôi bỏ đi, giữ súng đi.",
+    "level": "A2-B1"
+  },
+  {
+    "id": "p002",
+    "phrase": "wanna",
+    "full": "want to",
+    "meaning": "muốn",
+    "context": "reduced speech",
+    "example": "I wanna review one more sentence.",
+    "translation": "Tôi muốn ôn thêm một câu nữa.",
+    "level": "A2"
+  },
+  {
+    "id": "p003",
+    "phrase": "fair enough",
+    "full": "fair enough",
+    "meaning": "cũng hợp lý",
+    "context": "real talk",
+    "example": "Fair enough, let us try another way.",
+    "translation": "Cũng hợp lý, mình thử cách khác nhé.",
+    "level": "B1"
+  },
+  {
+    "id": "p004",
+    "phrase": "I'm down",
+    "full": "I am down",
+    "meaning": "tôi tham gia",
+    "context": "real talk",
+    "example": "If you want to practice tonight, I'm down.",
+    "translation": "Nếu bạn muốn luyện tối nay thì tôi tham gia.",
+    "level": "A2-B1"
+  }
+]

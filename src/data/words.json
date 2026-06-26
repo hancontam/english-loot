@@ -1,0 +1,42 @@
+[
+  {
+    "id": "w001",
+    "word": "postpone",
+    "meaning": "hoãn",
+    "example": "The meeting has been postponed until Friday.",
+    "translation": "Cuộc họp đã được hoãn đến thứ Sáu.",
+    "topic": "office",
+    "level": 600,
+    "traps": ["propose", "prepare", "postpone"]
+  },
+  {
+    "id": "w002",
+    "word": "estimate",
+    "meaning": "ước tính",
+    "example": "Can you estimate the delivery time?",
+    "translation": "Bạn có thể ước tính thời gian giao hàng không?",
+    "topic": "business",
+    "level": 550,
+    "traps": ["estimate", "hesitate", "estate"]
+  },
+  {
+    "id": "w003",
+    "word": "submit",
+    "meaning": "nộp, gửi",
+    "example": "Please submit the report before noon.",
+    "translation": "Vui lòng nộp báo cáo trước buổi trưa.",
+    "topic": "office",
+    "level": 500,
+    "traps": ["submit", "summit", "support"]
+  },
+  {
+    "id": "w004",
+    "word": "confirm",
+    "meaning": "xác nhận",
+    "example": "I need to confirm the schedule with my manager.",
+    "translation": "Tôi cần xác nhận lịch với quản lý của tôi.",
+    "topic": "communication",
+    "level": 450,
+    "traps": ["confirm", "conform", "perform"]
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "l001",
+    "sentence": "The meeting has been postponed until Friday.",
+    "normalForm": "The meeting has been postponed until Friday.",
+    "meaning": "Cuộc họp đã được hoãn đến thứ Sáu.",
+    "type": "TOEIC office",
+    "level": "B1"
+  },
+  {
+    "id": "l002",
+    "sentence": "Lemme check B.",
+    "normalForm": "Let me check B.",
+    "meaning": "Để tôi kiểm tra B.",
+    "type": "reduced speech",
+    "level": "A2"
+  },
+  {
+    "id": "l003",
+    "sentence": "How bout you?",
+    "normalForm": "How about you?",
+    "meaning": "Còn bạn thì sao?",
+    "type": "reduced speech",
+    "level": "A2"
+  },
+  {
+    "id": "l004",
+    "sentence": "Could you send me the updated file?",
+    "normalForm": "Could you send me the updated file?",
+    "meaning": "Bạn gửi tôi file đã cập nhật được không?",
+    "type": "work English",
+    "level": "B1"
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "g001",
+    "term": "rotate",
+    "meaning": "xoay sang site khác",
+    "example": "They are rotating B.",
+    "translation": "Tụi nó đang xoay qua B.",
+    "category": "Valorant"
+  },
+  {
+    "id": "g002",
+    "term": "play time",
+    "meaning": "câu giờ sau khi đặt spike/bomb",
+    "example": "Do not peek. Just play time.",
+    "translation": "Đừng ló ra. Cứ câu giờ thôi.",
+    "category": "Valorant"
+  },
+  {
+    "id": "g003",
+    "term": "mb",
+    "meaning": "my bad, lỗi tôi",
+    "example": "mb, I should have held flank.",
+    "translation": "Lỗi tôi, đáng ra tôi nên giữ flank.",
+    "category": "Voice chat"
+  },
+  {
+    "id": "g004",
+    "term": "full buy",
+    "meaning": "mua đầy đủ súng, giáp, kỹ năng",
+    "example": "We can full buy next round.",
+    "translation": "Round sau mình có thể mua đầy đủ.",
+    "category": "Economy"
+  }
+]
