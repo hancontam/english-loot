@@ -1,26 +1,126 @@
 [
   {
     "id": "w001",
-    "word": "postpone",
-    "meaning": "hoãn",
-    "example": "The meeting has been postponed until Friday.",
-    "translation": "Cuộc họp đã được hoãn đến thứ Sáu.",
-    "topic": "office",
-    "level": 600,
-    "traps": ["propose", "prepare", "postpone"]
+    "word": "agreement",
+    "meaning": "thỏa thuận",
+    "example": "Both companies signed the agreement this morning.",
+    "translation": "Cả hai công ty đã ký thỏa thuận vào sáng nay.",
+    "topic": "contracts",
+    "level": 500,
+    "traps": ["agreement", "arrangement", "assignment"]
   },
   {
     "id": "w002",
-    "word": "estimate",
-    "meaning": "ước tính",
-    "example": "Can you estimate the delivery time?",
-    "translation": "Bạn có thể ước tính thời gian giao hàng không?",
-    "topic": "business",
-    "level": 550,
-    "traps": ["estimate", "hesitate", "estate"]
+    "word": "comply",
+    "meaning": "tuân thủ",
+    "example": "All employees must comply with the safety rules.",
+    "translation": "Tất cả nhân viên phải tuân thủ các quy định an toàn.",
+    "topic": "contracts",
+    "level": 600,
+    "traps": ["comply", "complete", "compare"]
   },
   {
     "id": "w003",
+    "word": "negotiate",
+    "meaning": "đàm phán",
+    "example": "The manager will negotiate a better price.",
+    "translation": "Quản lý sẽ đàm phán một mức giá tốt hơn.",
+    "topic": "contracts",
+    "level": 650,
+    "traps": ["negotiate", "navigate", "notify"]
+  },
+  {
+    "id": "w004",
+    "word": "clause",
+    "meaning": "điều khoản",
+    "example": "Please read the payment clause carefully.",
+    "translation": "Vui lòng đọc kỹ điều khoản thanh toán.",
+    "topic": "contracts",
+    "level": 650,
+    "traps": ["clause", "close", "cause"]
+  },
+  {
+    "id": "w005",
+    "word": "renew",
+    "meaning": "gia hạn",
+    "example": "We need to renew the service contract next month.",
+    "translation": "Chúng ta cần gia hạn hợp đồng dịch vụ vào tháng tới.",
+    "topic": "contracts",
+    "level": 550,
+    "traps": ["renew", "review", "remove"]
+  },
+  {
+    "id": "w006",
+    "word": "advertise",
+    "meaning": "quảng cáo",
+    "example": "The store will advertise the new product online.",
+    "translation": "Cửa hàng sẽ quảng cáo sản phẩm mới trên mạng.",
+    "topic": "marketing",
+    "level": 500,
+    "traps": ["advertise", "advise", "analyze"]
+  },
+  {
+    "id": "w007",
+    "word": "promote",
+    "meaning": "quảng bá, thăng chức",
+    "example": "The team created a video to promote the app.",
+    "translation": "Nhóm đã tạo một video để quảng bá ứng dụng.",
+    "topic": "marketing",
+    "level": 500,
+    "traps": ["promote", "provide", "promise"]
+  },
+  {
+    "id": "w008",
+    "word": "survey",
+    "meaning": "khảo sát",
+    "example": "Customers completed a short survey after the event.",
+    "translation": "Khách hàng đã hoàn thành một khảo sát ngắn sau sự kiện.",
+    "topic": "marketing",
+    "level": 550,
+    "traps": ["survey", "service", "supply"]
+  },
+  {
+    "id": "w009",
+    "word": "campaign",
+    "meaning": "chiến dịch",
+    "example": "The marketing campaign starts on Monday.",
+    "translation": "Chiến dịch tiếp thị bắt đầu vào thứ Hai.",
+    "topic": "marketing",
+    "level": 600,
+    "traps": ["campaign", "company", "complaint"]
+  },
+  {
+    "id": "w010",
+    "word": "schedule",
+    "meaning": "lịch trình, lên lịch",
+    "example": "Please check the schedule before booking a room.",
+    "translation": "Vui lòng kiểm tra lịch trình trước khi đặt phòng.",
+    "topic": "office",
+    "level": 450,
+    "traps": ["schedule", "school", "section"]
+  },
+  {
+    "id": "w011",
+    "word": "confirm",
+    "meaning": "xác nhận",
+    "example": "I need to confirm the meeting time with my manager.",
+    "translation": "Tôi cần xác nhận thời gian họp với quản lý.",
+    "topic": "office",
+    "level": 450,
+    "traps": ["confirm", "conform", "perform"]
+  },
+  {
+    "id": "w012",
+    "word": "postpone",
+    "meaning": "hoãn",
+    "example": "The training session was postponed until Friday.",
+    "translation": "Buổi đào tạo đã được hoãn đến thứ Sáu.",
+    "topic": "office",
+    "level": 600,
+    "traps": ["postpone", "propose", "prepare"]
+  },
+  {
+    "id": "w013",
     "word": "submit",
     "meaning": "nộp, gửi",
     "example": "Please submit the report before noon.",
@@ -30,13 +130,373 @@
     "traps": ["submit", "summit", "support"]
   },
   {
-    "id": "w004",
-    "word": "confirm",
-    "meaning": "xác nhận",
-    "example": "I need to confirm the schedule with my manager.",
-    "translation": "Tôi cần xác nhận lịch với quản lý của tôi.",
-    "topic": "communication",
+    "id": "w014",
+    "word": "attach",
+    "meaning": "đính kèm",
+    "example": "I will attach the updated file to the email.",
+    "translation": "Tôi sẽ đính kèm tệp đã cập nhật vào email.",
+    "topic": "office",
+    "level": 500,
+    "traps": ["attach", "attack", "attend"]
+  },
+  {
+    "id": "w015",
+    "word": "attendee",
+    "meaning": "người tham dự",
+    "example": "Each attendee received a printed agenda.",
+    "translation": "Mỗi người tham dự đã nhận một chương trình in sẵn.",
+    "topic": "conferences",
+    "level": 550,
+    "traps": ["attendee", "attention", "attendance"]
+  },
+  {
+    "id": "w016",
+    "word": "venue",
+    "meaning": "địa điểm tổ chức",
+    "example": "The conference venue is near the train station.",
+    "translation": "Địa điểm tổ chức hội nghị ở gần ga tàu.",
+    "topic": "conferences",
+    "level": 550,
+    "traps": ["venue", "value", "vendor"]
+  },
+  {
+    "id": "w017",
+    "word": "agenda",
+    "meaning": "chương trình nghị sự",
+    "example": "The agenda includes a short product demo.",
+    "translation": "Chương trình nghị sự có một phần demo sản phẩm ngắn.",
+    "topic": "conferences",
+    "level": 550,
+    "traps": ["agenda", "agency", "agent"]
+  },
+  {
+    "id": "w018",
+    "word": "session",
+    "meaning": "phiên, buổi",
+    "example": "The afternoon session focuses on customer service.",
+    "translation": "Phiên buổi chiều tập trung vào dịch vụ khách hàng.",
+    "topic": "conferences",
+    "level": 500,
+    "traps": ["session", "section", "season"]
+  },
+  {
+    "id": "w019",
+    "word": "software",
+    "meaning": "phần mềm",
+    "example": "The new software helps us track orders.",
+    "translation": "Phần mềm mới giúp chúng tôi theo dõi đơn hàng.",
+    "topic": "computers",
     "level": 450,
-    "traps": ["confirm", "conform", "perform"]
+    "traps": ["software", "support", "surface"]
+  },
+  {
+    "id": "w020",
+    "word": "update",
+    "meaning": "cập nhật",
+    "example": "The system update will take about ten minutes.",
+    "translation": "Bản cập nhật hệ thống sẽ mất khoảng mười phút.",
+    "topic": "computers",
+    "level": 450,
+    "traps": ["update", "upload", "upgrade"]
+  },
+  {
+    "id": "w021",
+    "word": "access",
+    "meaning": "quyền truy cập, truy cập",
+    "example": "Only managers have access to the finance folder.",
+    "translation": "Chỉ quản lý mới có quyền truy cập vào thư mục tài chính.",
+    "topic": "computers",
+    "level": 500,
+    "traps": ["access", "excess", "assist"]
+  },
+  {
+    "id": "w022",
+    "word": "backup",
+    "meaning": "bản sao lưu",
+    "example": "Create a backup before changing the database.",
+    "translation": "Hãy tạo bản sao lưu trước khi thay đổi cơ sở dữ liệu.",
+    "topic": "computers",
+    "level": 550,
+    "traps": ["backup", "backlog", "background"]
+  },
+  {
+    "id": "w023",
+    "word": "applicant",
+    "meaning": "ứng viên",
+    "example": "Each applicant must send a resume by Friday.",
+    "translation": "Mỗi ứng viên phải gửi sơ yếu lý lịch trước thứ Sáu.",
+    "topic": "hiring",
+    "level": 550,
+    "traps": ["applicant", "application", "appliance"]
+  },
+  {
+    "id": "w024",
+    "word": "recruit",
+    "meaning": "tuyển dụng",
+    "example": "The company plans to recruit two developers.",
+    "translation": "Công ty dự định tuyển dụng hai lập trình viên.",
+    "topic": "hiring",
+    "level": 600,
+    "traps": ["recruit", "record", "request"]
+  },
+  {
+    "id": "w025",
+    "word": "interview",
+    "meaning": "phỏng vấn",
+    "example": "Her interview is scheduled for Tuesday morning.",
+    "translation": "Buổi phỏng vấn của cô ấy được lên lịch vào sáng thứ Ba.",
+    "topic": "hiring",
+    "level": 450,
+    "traps": ["interview", "interval", "internet"]
+  },
+  {
+    "id": "w026",
+    "word": "resume",
+    "meaning": "sơ yếu lý lịch",
+    "example": "Please attach your resume to the application.",
+    "translation": "Vui lòng đính kèm sơ yếu lý lịch vào đơn ứng tuyển.",
+    "topic": "hiring",
+    "level": 500,
+    "traps": ["resume", "result", "review"]
+  },
+  {
+    "id": "w027",
+    "word": "qualification",
+    "meaning": "bằng cấp, năng lực phù hợp",
+    "example": "The job requires a technical qualification.",
+    "translation": "Công việc này yêu cầu năng lực kỹ thuật phù hợp.",
+    "topic": "hiring",
+    "level": 650,
+    "traps": ["qualification", "quantity", "questionnaire"]
+  },
+  {
+    "id": "w028",
+    "word": "shipment",
+    "meaning": "lô hàng",
+    "example": "The shipment arrived at the warehouse yesterday.",
+    "translation": "Lô hàng đã đến kho vào hôm qua.",
+    "topic": "shipping",
+    "level": 550,
+    "traps": ["shipment", "payment", "equipment"]
+  },
+  {
+    "id": "w029",
+    "word": "carrier",
+    "meaning": "đơn vị vận chuyển",
+    "example": "The carrier will pick up the boxes at noon.",
+    "translation": "Đơn vị vận chuyển sẽ lấy các thùng hàng vào buổi trưa.",
+    "topic": "shipping",
+    "level": 600,
+    "traps": ["carrier", "career", "cashier"]
+  },
+  {
+    "id": "w030",
+    "word": "deliver",
+    "meaning": "giao hàng",
+    "example": "We can deliver the package by tomorrow.",
+    "translation": "Chúng tôi có thể giao gói hàng trước ngày mai.",
+    "topic": "shipping",
+    "level": 450,
+    "traps": ["deliver", "delay", "delete"]
+  },
+  {
+    "id": "w031",
+    "word": "warehouse",
+    "meaning": "kho hàng",
+    "example": "The warehouse stores spare parts for the factory.",
+    "translation": "Kho hàng lưu trữ phụ tùng cho nhà máy.",
+    "topic": "shipping",
+    "level": 550,
+    "traps": ["warehouse", "workplace", "workshop"]
+  },
+  {
+    "id": "w032",
+    "word": "invoice",
+    "meaning": "hóa đơn",
+    "example": "The invoice was sent to the client by email.",
+    "translation": "Hóa đơn đã được gửi cho khách hàng qua email.",
+    "topic": "invoices",
+    "level": 550,
+    "traps": ["invoice", "invite", "invest"]
+  },
+  {
+    "id": "w033",
+    "word": "payment",
+    "meaning": "thanh toán",
+    "example": "Payment is due within thirty days.",
+    "translation": "Khoản thanh toán đến hạn trong vòng ba mươi ngày.",
+    "topic": "invoices",
+    "level": 500,
+    "traps": ["payment", "shipment", "statement"]
+  },
+  {
+    "id": "w034",
+    "word": "receipt",
+    "meaning": "biên lai",
+    "example": "Keep the receipt for your business records.",
+    "translation": "Hãy giữ biên lai cho hồ sơ kinh doanh của bạn.",
+    "topic": "invoices",
+    "level": 500,
+    "traps": ["receipt", "recipe", "recent"]
+  },
+  {
+    "id": "w035",
+    "word": "overdue",
+    "meaning": "quá hạn",
+    "example": "The overdue invoice needs immediate attention.",
+    "translation": "Hóa đơn quá hạn cần được xử lý ngay.",
+    "topic": "invoices",
+    "level": 600,
+    "traps": ["overdue", "overview", "overseas"]
+  },
+  {
+    "id": "w036",
+    "word": "deposit",
+    "meaning": "tiền đặt cọc, gửi tiền",
+    "example": "Guests must pay a small deposit when booking.",
+    "translation": "Khách phải trả một khoản đặt cọc nhỏ khi đặt chỗ.",
+    "topic": "banking",
+    "level": 550,
+    "traps": ["deposit", "departure", "device"]
+  },
+  {
+    "id": "w037",
+    "word": "withdraw",
+    "meaning": "rút tiền, rút lại",
+    "example": "You can withdraw cash from the ATM downstairs.",
+    "translation": "Bạn có thể rút tiền mặt từ máy ATM ở tầng dưới.",
+    "topic": "banking",
+    "level": 600,
+    "traps": ["withdraw", "withhold", "without"]
+  },
+  {
+    "id": "w038",
+    "word": "transfer",
+    "meaning": "chuyển khoản, chuyển",
+    "example": "The accountant will transfer the funds today.",
+    "translation": "Kế toán sẽ chuyển khoản tiền hôm nay.",
+    "topic": "banking",
+    "level": 500,
+    "traps": ["transfer", "translate", "transport"]
+  },
+  {
+    "id": "w039",
+    "word": "balance",
+    "meaning": "số dư, cân bằng",
+    "example": "Please check the account balance before paying.",
+    "translation": "Vui lòng kiểm tra số dư tài khoản trước khi thanh toán.",
+    "topic": "banking",
+    "level": 500,
+    "traps": ["balance", "budget", "benefit"]
+  },
+  {
+    "id": "w040",
+    "word": "itinerary",
+    "meaning": "lịch trình chuyến đi",
+    "example": "The travel agent emailed the itinerary yesterday.",
+    "translation": "Đại lý du lịch đã gửi lịch trình chuyến đi qua email hôm qua.",
+    "topic": "travel",
+    "level": 650,
+    "traps": ["itinerary", "inventory", "interview"]
+  },
+  {
+    "id": "w041",
+    "word": "luggage",
+    "meaning": "hành lý",
+    "example": "Passengers may bring one piece of luggage.",
+    "translation": "Hành khách có thể mang một kiện hành lý.",
+    "topic": "travel",
+    "level": 450,
+    "traps": ["luggage", "language", "package"]
+  },
+  {
+    "id": "w042",
+    "word": "departure",
+    "meaning": "sự khởi hành",
+    "example": "The departure time has changed to 8 p.m.",
+    "translation": "Thời gian khởi hành đã đổi sang 8 giờ tối.",
+    "topic": "travel",
+    "level": 550,
+    "traps": ["departure", "department", "deposit"]
+  },
+  {
+    "id": "w043",
+    "word": "reservation",
+    "meaning": "sự đặt chỗ",
+    "example": "I made a reservation for two people.",
+    "translation": "Tôi đã đặt chỗ cho hai người.",
+    "topic": "travel",
+    "level": 500,
+    "traps": ["reservation", "reception", "registration"]
+  },
+  {
+    "id": "w044",
+    "word": "check-in",
+    "meaning": "làm thủ tục nhận phòng hoặc lên máy bay",
+    "example": "Hotel check-in begins at 3 p.m.",
+    "translation": "Thủ tục nhận phòng khách sạn bắt đầu lúc 3 giờ chiều.",
+    "topic": "hotels",
+    "level": 450,
+    "traps": ["check-in", "checkout", "checkup"]
+  },
+  {
+    "id": "w045",
+    "word": "vacancy",
+    "meaning": "phòng trống, vị trí trống",
+    "example": "The hotel has no vacancy this weekend.",
+    "translation": "Khách sạn không còn phòng trống vào cuối tuần này.",
+    "topic": "hotels",
+    "level": 600,
+    "traps": ["vacancy", "vacation", "value"]
+  },
+  {
+    "id": "w046",
+    "word": "accommodation",
+    "meaning": "chỗ ở",
+    "example": "The company will pay for your accommodation.",
+    "translation": "Công ty sẽ chi trả chỗ ở cho bạn.",
+    "topic": "hotels",
+    "level": 650,
+    "traps": ["accommodation", "recommendation", "communication"]
+  },
+  {
+    "id": "w047",
+    "word": "concierge",
+    "meaning": "nhân viên hỗ trợ khách tại khách sạn",
+    "example": "The concierge called a taxi for the guests.",
+    "translation": "Nhân viên hỗ trợ khách đã gọi taxi cho khách.",
+    "topic": "hotels",
+    "level": 700,
+    "traps": ["concierge", "conference", "contractor"]
+  },
+  {
+    "id": "w048",
+    "word": "menu",
+    "meaning": "thực đơn",
+    "example": "The lunch menu changes every week.",
+    "translation": "Thực đơn bữa trưa thay đổi mỗi tuần.",
+    "topic": "restaurants",
+    "level": 400,
+    "traps": ["menu", "memo", "manual"]
+  },
+  {
+    "id": "w049",
+    "word": "ingredient",
+    "meaning": "nguyên liệu",
+    "example": "The chef ordered fresh ingredients for dinner.",
+    "translation": "Đầu bếp đã đặt nguyên liệu tươi cho bữa tối.",
+    "topic": "restaurants",
+    "level": 600,
+    "traps": ["ingredient", "inventory", "invoice"]
+  },
+  {
+    "id": "w050",
+    "word": "bill",
+    "meaning": "hóa đơn",
+    "example": "Could you bring us the bill, please?",
+    "translation": "Bạn có thể mang hóa đơn cho chúng tôi được không?",
+    "topic": "restaurants",
+    "level": 400,
+    "traps": ["bill", "bell", "ball"]
   }
 ]

@@ -3,45 +3,17 @@ import AudioButton from '../components/AudioButton.jsx';
 import Card from '../components/Card.jsx';
 import PageHeader from '../components/PageHeader.jsx';
 import words from '../data/words.json';
-import { getProgress, markWordHard, markWordKnown } from '../lib/storage.js';
-
-function safeWords() {
-  return Array.isArray(words) ? words : [];
-}
-
-function getWordKey(item) {
-  return item?.id || item?.word || '';
-}
-
-function makeSavedSet(list) {
-  return new Set(
-    (Array.isArray(list) ? list : [])
-      .filter((item) => typeof item === 'string')
-      .map((item) => item.trim().toLowerCase())
-      .filter(Boolean),
-  );
-}
-
-function wordMatchesSet(item, savedSet) {
-  const keys = [item?.id, item?.word]
-    .filter((value) => typeof value === 'string')
-    .map((value) => value.trim().toLowerCase())
-    .filter(Boolean);
-
-  return keys.some((key) => savedSet.has(key));
-}
-
-function getWordStatus(item, progress) {
-  if (wordMatchesSet(item, makeSavedSet(progress.hardWords))) {
-    return 'hard';
-  }
-
-  if (wordMatchesSet(item, makeSavedSet(progress.knownWords))) {
-    return 'known';
-  }
-
-  return 'new';
-}
+import { makeWordLearningEventPayload } from '../utils/learning/events.js';
+import { WORD_DOMAIN, getWordKey } from '../utils/learning/itemKeys.js';
+import { buildWordMasteryRecord, getWordStatus } from '../utils/learning/mastery.js';
+import { pickWeightedWord } from '../utils/learning/selectors.js';
+import {
+  addLearningEvent,
+  getProgress,
+  markWordHard,
+  markWordKnown,
+  updateItemMastery,
+} from '../lib/storage.js';
 
 function getStatusLabel(status) {
   if (status === 'hard') {
@@ -55,42 +27,6 @@ function getStatusLabel(status) {
   return 'mới';
 }
 
-function getWordWeight(item, progress) {
-  const status = getWordStatus(item, progress);
-
-  if (status === 'hard') {
-    return 2.5;
-  }
-
-  if (status === 'known') {
-    return 0.35;
-  }
-
-  return 1;
-}
-
-function pickWeightedWord(progress, previousWordKey = '') {
-  const allWords = safeWords();
-  const candidates =
-    allWords.length > 1 ? allWords.filter((item) => getWordKey(item) !== previousWordKey) : allWords;
-  const weightedWords = candidates.map((item) => ({
-    item,
-    weight: getWordWeight(item, progress),
-  }));
-  const totalWeight = weightedWords.reduce((total, entry) => total + entry.weight, 0);
-  let cursor = Math.random() * totalWeight;
-
-  for (const entry of weightedWords) {
-    cursor -= entry.weight;
-
-    if (cursor <= 0) {
-      return entry.item;
-    }
-  }
-
-  return weightedWords[0]?.item || null;
-}
-
 const primaryButtonClass =
   'h-10 rounded-xl bg-loot-text px-5 text-sm font-medium text-loot-card transition-opacity hover:opacity-90';
 const secondaryButtonClass =
@@ -100,7 +36,7 @@ const selectedButtonClass =
 
 export default function WordLootPage() {
   const [progress, setProgress] = useState(() => getProgress());
-  const [currentWord, setCurrentWord] = useState(() => pickWeightedWord(getProgress()));
+  const [currentWord, setCurrentWord] = useState(() => pickWeightedWord(words, getProgress()));
   const [isRevealed, setIsRevealed] = useState(false);
 
   if (!currentWord) {
@@ -124,13 +60,27 @@ export default function WordLootPage() {
   const audioText = [currentWord.word, currentWord.example].filter(Boolean).join('. ');
 
   function handleKnown() {
-    const nextProgress = markWordKnown(currentWordKey);
+    const progressBefore = getProgress();
+
+    markWordKnown(currentWordKey);
+    updateItemMastery(WORD_DOMAIN, currentWordKey, () =>
+      buildWordMasteryRecord(currentWord, 'known', progressBefore),
+    );
+    const nextProgress = addLearningEvent(makeWordLearningEventPayload(currentWord, 'known'));
+
     setProgress(nextProgress);
     setIsRevealed(true);
   }
 
   function handleHard() {
-    const nextProgress = markWordHard(currentWordKey);
+    const progressBefore = getProgress();
+
+    markWordHard(currentWordKey);
+    updateItemMastery(WORD_DOMAIN, currentWordKey, () =>
+      buildWordMasteryRecord(currentWord, 'hard', progressBefore),
+    );
+    const nextProgress = addLearningEvent(makeWordLearningEventPayload(currentWord, 'hard'));
+
     setProgress(nextProgress);
     setIsRevealed(true);
   }
@@ -138,7 +88,7 @@ export default function WordLootPage() {
   function handleNext() {
     const latestProgress = getProgress();
     setProgress(latestProgress);
-    setCurrentWord(pickWeightedWord(latestProgress, currentWordKey));
+    setCurrentWord(pickWeightedWord(words, latestProgress, currentWordKey));
     setIsRevealed(false);
   }
 
