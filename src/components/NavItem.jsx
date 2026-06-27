@@ -1,12 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import LineIcon from './LineIcon.jsx';
 
-export default function NavItem({ icon, isCollapsed = false, label, to }) {
+export default function NavItem({ icon, isCollapsed = false, label, onNavigate, to }) {
   return (
     <NavLink
       aria-label={label}
       title={isCollapsed ? label : undefined}
       to={to}
+      onClick={onNavigate}
       className={({ isActive }) =>
         [
           'flex h-12 items-center gap-3 rounded-2xl px-4 text-sm font-medium transition-colors',
