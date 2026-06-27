@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import AppLayout from './components/AppLayout.jsx';
 import BossTestPage from './pages/BossTestPage.jsx';
 import DailyLootPage from './pages/DailyLootPage.jsx';
 import GamerCommsPage from './pages/GamerCommsPage.jsx';
 import ListenTypePage from './pages/ListenTypePage.jsx';
 import MistakeBookPage from './pages/MistakeBookPage.jsx';
+import NotFoundPage from './pages/NotFoundPage.jsx';
 import RealTalkPage from './pages/RealTalkPage.jsx';
 import VideoFarmPage from './pages/VideoFarmPage.jsx';
 import WordLootPage from './pages/WordLootPage.jsx';
@@ -54,7 +55,7 @@ export default function App() {
         {routes.map((route) => (
           <Route key={route.path} path={route.path} element={route.element} />
         ))}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </AppLayout>
   );

@@ -49,7 +49,7 @@ function SidebarToggleIcon({ isCollapsed }) {
 export default function AppLayout({ children, routes }) {
   const location = useLocation();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(getInitialSidebarCollapsed);
-  const currentRoute = routes.find((route) => route.path === location.pathname) ?? routes[0];
+  const currentRoute = routes.find((route) => route.path === location.pathname) ?? { label: 'Not Found' };
 
   useEffect(() => {
     try {

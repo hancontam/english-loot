@@ -1,19 +1,20 @@
-import { useState } from 'react';
-import Card from '../components/Card.jsx';
-import PageHeader from '../components/PageHeader.jsx';
-import { clearMistakes, getProgress, removeMistake } from '../lib/storage.js';
+import { useState } from "react";
+import Card from "../components/Card.jsx";
+import DeleteConfirmModal from "../components/DeleteConfirmModal.jsx";
+import PageHeader from "../components/PageHeader.jsx";
+import { clearMistakes, getProgress, removeMistake } from "../lib/storage.js";
 
 function normalizeText(value) {
-  return String(value || '')
+  return String(value || "")
     .toLowerCase()
-    .replace(/[^\w\s']/g, '')
-    .replace(/\s+/g, ' ')
+    .replace(/[^\w\s']/g, "")
+    .replace(/\s+/g, " ")
     .trim();
 }
 
 function groupMistakes(mistakes) {
   return (Array.isArray(mistakes) ? mistakes : []).reduce((groups, mistake) => {
-    const type = mistake?.type || 'practice';
+    const type = mistake?.type || "practice";
     return {
       ...groups,
       [type]: [...(groups[type] || []), mistake],
@@ -22,14 +23,16 @@ function groupMistakes(mistakes) {
 }
 
 const secondaryButtonClass =
-  'h-10 rounded-xl border border-loot-border bg-loot-card px-4 text-sm font-medium text-loot-text transition-colors hover:bg-loot-selected';
-const ghostButtonClass = 'h-10 rounded-xl px-4 text-sm font-medium text-loot-muted transition-colors hover:bg-loot-selected';
+  "h-10 rounded-xl border border-loot-border bg-loot-card px-4 text-sm font-medium text-loot-text transition-colors hover:bg-loot-selected";
+const ghostButtonClass =
+  "h-10 rounded-xl px-4 text-sm font-medium text-loot-muted transition-colors hover:bg-loot-selected";
 
 export default function MistakeBookPage() {
   const [progress, setProgress] = useState(() => getProgress());
-  const [retryId, setRetryId] = useState('');
+  const [retryId, setRetryId] = useState("");
   const [retryAnswers, setRetryAnswers] = useState({});
   const [retryResults, setRetryResults] = useState({});
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const mistakeGroups = groupMistakes(progress.mistakes);
   const groupEntries = Object.entries(mistakeGroups);
 
@@ -38,23 +41,26 @@ export default function MistakeBookPage() {
   }
 
   function handleClear() {
-    if (typeof window !== 'undefined' && !window.confirm('Xóa tất cả lỗi?')) {
-      return;
-    }
+    setIsDeleteModalOpen(true);
+  }
 
+  function handleConfirmClear() {
     setProgress(clearMistakes());
-    setRetryId('');
+    setRetryId("");
     setRetryAnswers({});
     setRetryResults({});
+    setIsDeleteModalOpen(false);
   }
 
   function handleRetryCheck(mistake) {
-    const answer = retryAnswers[mistake.id] || '';
+    const answer = retryAnswers[mistake.id] || "";
     const isCorrect = normalizeText(answer) === normalizeText(mistake.target);
 
     setRetryResults((current) => ({
       ...current,
-      [mistake.id]: isCorrect ? 'Đúng rồi. Bạn có thể xóa lỗi này khi sẵn sàng.' : 'Chưa đúng. Thử lại chậm hơn nhé.',
+      [mistake.id]: isCorrect
+        ? "Đúng rồi. Bạn có thể xóa lỗi này khi sẵn sàng."
+        : "Chưa đúng. Thử lại chậm hơn nhé.",
     }));
   }
 
@@ -67,7 +73,11 @@ export default function MistakeBookPage() {
           description="Ôn lại lỗi nghe, Real Talk, Gamer Comms, từ vựng, và ngữ pháp khi cần."
         />
         {progress.mistakes.length > 0 ? (
-          <button className={ghostButtonClass} type="button" onClick={handleClear}>
+          <button
+            className={ghostButtonClass}
+            type="button"
+            onClick={handleClear}
+          >
             Xóa tất cả
           </button>
         ) : null}
@@ -86,8 +96,13 @@ export default function MistakeBookPage() {
 
               <div className="mt-4 space-y-3">
                 {mistakes.map((mistake) => (
-                  <div key={mistake.id} className="rounded-[20px] border border-loot-border bg-loot-selected p-4">
-                    <p className="text-sm font-medium text-loot-text">{mistake.target}</p>
+                  <div
+                    key={mistake.id}
+                    className="rounded-[20px] border border-loot-border bg-loot-selected p-4"
+                  >
+                    <p className="text-sm font-medium text-loot-text">
+                      {mistake.target}
+                    </p>
                     {mistake.userAnswer ? (
                       <p className="mt-2 text-sm font-normal leading-6 text-loot-muted">
                         Bạn đã trả lời: {mistake.userAnswer}
@@ -99,7 +114,7 @@ export default function MistakeBookPage() {
                         <input
                           className="h-10 w-full rounded-xl border border-loot-border bg-loot-card px-3 text-sm font-normal text-loot-text outline-none focus:bg-loot-selected"
                           placeholder="Gõ đáp án đúng..."
-                          value={retryAnswers[mistake.id] || ''}
+                          value={retryAnswers[mistake.id] || ""}
                           onChange={(event) =>
                             setRetryAnswers((current) => ({
                               ...current,
@@ -108,7 +123,9 @@ export default function MistakeBookPage() {
                           }
                         />
                         {retryResults[mistake.id] ? (
-                          <p className="mt-2 text-sm font-medium leading-6 text-loot-text">{retryResults[mistake.id]}</p>
+                          <p className="mt-2 text-sm font-medium leading-6 text-loot-text">
+                            {retryResults[mistake.id]}
+                          </p>
                         ) : null}
                       </div>
                     ) : null}
@@ -117,16 +134,26 @@ export default function MistakeBookPage() {
                       <button
                         className={secondaryButtonClass}
                         type="button"
-                        onClick={() => setRetryId(retryId === mistake.id ? '' : mistake.id)}
+                        onClick={() =>
+                          setRetryId(retryId === mistake.id ? "" : mistake.id)
+                        }
                       >
                         Luyện lại
                       </button>
                       {retryId === mistake.id ? (
-                        <button className={secondaryButtonClass} type="button" onClick={() => handleRetryCheck(mistake)}>
+                        <button
+                          className={secondaryButtonClass}
+                          type="button"
+                          onClick={() => handleRetryCheck(mistake)}
+                        >
                           Kiểm tra lại
                         </button>
                       ) : null}
-                      <button className={ghostButtonClass} type="button" onClick={() => handleRemove(mistake.id)}>
+                      <button
+                        className={ghostButtonClass}
+                        type="button"
+                        onClick={() => handleRemove(mistake.id)}
+                      >
                         Xóa
                       </button>
                     </div>
@@ -139,10 +166,19 @@ export default function MistakeBookPage() {
       ) : (
         <Card>
           <p className="text-sm font-normal leading-6 text-loot-muted">
-            Chưa có lỗi nào. Câu quiz hoặc câu nghe trả lời sai sẽ hiện ở đây để ôn lại.
+            Chưa có lỗi nào. Câu quiz hoặc câu nghe trả lời sai sẽ hiện ở đây để
+            ôn lại.
           </p>
         </Card>
       )}
+
+      <DeleteConfirmModal
+        description="Hành động này không thể hoàn tác."
+        isOpen={isDeleteModalOpen}
+        title="Xóa tất cả lỗi?"
+        onCancel={() => setIsDeleteModalOpen(false)}
+        onConfirm={handleConfirmClear}
+      />
     </>
   );
 }

@@ -1,6 +1,5 @@
 import Card from '../components/Card.jsx';
 import FeatureCard from '../components/FeatureCard.jsx';
-import MascotBubble from '../components/MascotBubble.jsx';
 import ProgressBadge from '../components/ProgressBadge.jsx';
 import gamerTerms from '../data/gamerTerms.json';
 import listeningItems from '../data/listeningItems.json';
@@ -105,8 +104,7 @@ export default function DailyLootPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-4 rounded-[24px] border border-loot-border bg-loot-selected p-4">
-            <MascotBubble />
+          <div className="flex min-h-16 items-center rounded-[24px] border border-loot-border bg-loot-selected p-4">
             <div>
               <p className="text-sm font-medium text-loot-text">Soft reward</p>
               <p className="mt-1 text-sm font-normal text-loot-muted">Keep the daily loop calm and small.</p>
