@@ -38,7 +38,7 @@ export default function MistakeBookPage() {
   }
 
   function handleClear() {
-    if (typeof window !== 'undefined' && !window.confirm('Clear all mistakes?')) {
+    if (typeof window !== 'undefined' && !window.confirm('Xóa tất cả lỗi?')) {
       return;
     }
 
@@ -54,7 +54,7 @@ export default function MistakeBookPage() {
 
     setRetryResults((current) => ({
       ...current,
-      [mistake.id]: isCorrect ? 'Correct. You can remove this mistake when ready.' : 'Not yet. Try again slowly.',
+      [mistake.id]: isCorrect ? 'Đúng rồi. Bạn có thể xóa lỗi này khi sẵn sàng.' : 'Chưa đúng. Thử lại chậm hơn nhé.',
     }));
   }
 
@@ -63,12 +63,12 @@ export default function MistakeBookPage() {
       <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <PageHeader
           eyebrow="Mistake Book"
-          title="Personal mistake book"
-          description="Review wrong answers from listening, real talk, gamer comms, vocabulary, and grammar practice."
+          title="Sổ lỗi cá nhân"
+          description="Ôn lại lỗi nghe, Real Talk, Gamer Comms, từ vựng, và ngữ pháp khi cần."
         />
         {progress.mistakes.length > 0 ? (
           <button className={ghostButtonClass} type="button" onClick={handleClear}>
-            Clear all
+            Xóa tất cả
           </button>
         ) : null}
       </div>
@@ -80,7 +80,7 @@ export default function MistakeBookPage() {
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <h3 className="text-base font-medium text-loot-text">{type}</h3>
                 <span className="rounded-[40px] border border-loot-border bg-loot-selected px-3 py-1 text-sm font-normal text-loot-muted">
-                  {mistakes.length} saved
+                  {mistakes.length} lỗi đã lưu
                 </span>
               </div>
 
@@ -90,7 +90,7 @@ export default function MistakeBookPage() {
                     <p className="text-sm font-medium text-loot-text">{mistake.target}</p>
                     {mistake.userAnswer ? (
                       <p className="mt-2 text-sm font-normal leading-6 text-loot-muted">
-                        Your answer: {mistake.userAnswer}
+                        Bạn đã trả lời: {mistake.userAnswer}
                       </p>
                     ) : null}
 
@@ -98,7 +98,7 @@ export default function MistakeBookPage() {
                       <div className="mt-4">
                         <input
                           className="h-10 w-full rounded-xl border border-loot-border bg-loot-card px-3 text-sm font-normal text-loot-text outline-none focus:bg-loot-selected"
-                          placeholder="Type the correct answer..."
+                          placeholder="Gõ đáp án đúng..."
                           value={retryAnswers[mistake.id] || ''}
                           onChange={(event) =>
                             setRetryAnswers((current) => ({
@@ -119,15 +119,15 @@ export default function MistakeBookPage() {
                         type="button"
                         onClick={() => setRetryId(retryId === mistake.id ? '' : mistake.id)}
                       >
-                        Retry
+                        Luyện lại
                       </button>
                       {retryId === mistake.id ? (
                         <button className={secondaryButtonClass} type="button" onClick={() => handleRetryCheck(mistake)}>
-                          Check retry
+                          Kiểm tra lại
                         </button>
                       ) : null}
                       <button className={ghostButtonClass} type="button" onClick={() => handleRemove(mistake.id)}>
-                        Remove
+                        Xóa
                       </button>
                     </div>
                   </div>
@@ -139,7 +139,7 @@ export default function MistakeBookPage() {
       ) : (
         <Card>
           <p className="text-sm font-normal leading-6 text-loot-muted">
-            No mistakes yet. Wrong quiz or listening answers will appear here for review.
+            Chưa có lỗi nào. Câu quiz hoặc câu nghe trả lời sai sẽ hiện ở đây để ôn lại.
           </p>
         </Card>
       )}

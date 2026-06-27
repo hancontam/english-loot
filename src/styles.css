@@ -47,6 +47,45 @@ textarea:focus-visible {
   outline-offset: 4px;
 }
 
+button.bg-loot-text.text-loot-card,
+a.bg-loot-text.text-loot-card {
+  color: var(--loot-card);
+  background: var(--loot-text);
+  border: 0;
+  box-shadow: none;
+  outline: none;
+  opacity: 1;
+  background-clip: padding-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button.bg-loot-text.text-loot-card:hover,
+a.bg-loot-text.text-loot-card:hover {
+  background: #242424;
+  box-shadow: none;
+  opacity: 1;
+}
+
+button.bg-loot-text.text-loot-card:active,
+a.bg-loot-text.text-loot-card:active {
+  background: var(--loot-text);
+  box-shadow: none;
+  opacity: 1;
+}
+
+button.bg-loot-text.text-loot-card:focus,
+a.bg-loot-text.text-loot-card:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+button.bg-loot-text.text-loot-card:focus-visible,
+a.bg-loot-text.text-loot-card:focus-visible {
+  outline: 2px solid rgb(24 24 24 / 0.32);
+  outline-offset: 4px;
+  box-shadow: none;
+}
+
 ::selection {
   background: var(--loot-selected);
   color: var(--loot-text);

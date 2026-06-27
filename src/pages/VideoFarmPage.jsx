@@ -36,16 +36,16 @@ export default function VideoFarmPage() {
     <>
       <PageHeader
         eyebrow="Video Farm"
-        title="Listening sources"
-        description="Filter saved listening sources by level and topic, then open the source for daily practice."
+        title="Nguồn nghe"
+        description="Lọc nguồn nghe theo trình độ và chủ đề, rồi mở nguồn để luyện mỗi ngày."
       />
 
       <Card className="mb-4 p-5">
         <div className="grid gap-3 md:grid-cols-2">
           <label className="block">
-            <span className="text-sm font-medium text-loot-muted">Topic</span>
+            <span className="text-sm font-medium text-loot-muted">Chủ đề</span>
             <select className={`${selectClass} mt-2 w-full`} value={topic} onChange={(event) => setTopic(event.target.value)}>
-              <option value="all">All topics</option>
+              <option value="all">Tất cả chủ đề</option>
               {topics.map((item) => (
                 <option key={item} value={item}>
                   {item}
@@ -54,9 +54,9 @@ export default function VideoFarmPage() {
             </select>
           </label>
           <label className="block">
-            <span className="text-sm font-medium text-loot-muted">Level</span>
+            <span className="text-sm font-medium text-loot-muted">Trình độ</span>
             <select className={`${selectClass} mt-2 w-full`} value={level} onChange={(event) => setLevel(event.target.value)}>
-              <option value="all">All levels</option>
+              <option value="all">Tất cả trình độ</option>
               {levels.map((item) => (
                 <option key={item} value={item}>
                   {item}
@@ -80,21 +80,21 @@ export default function VideoFarmPage() {
                 </span>
               </div>
               <h3 className="mt-4 text-lg font-medium text-loot-text">{video.title}</h3>
-              <p className="mt-2 text-sm font-normal text-loot-muted">Source: {video.source}</p>
+              <p className="mt-2 text-sm font-normal text-loot-muted">Nguồn: {video.source}</p>
               <a
                 className="mt-4 inline-flex h-10 items-center rounded-xl border border-loot-border bg-loot-card px-4 text-sm font-medium text-loot-text transition-colors hover:bg-loot-selected"
                 href={video.url}
                 rel="noreferrer"
                 target="_blank"
               >
-                Open source
+                Mở nguồn học
               </a>
             </Card>
           ))}
         </div>
       ) : (
         <Card>
-          <p className="text-sm font-normal leading-6 text-loot-muted">No video source matches these filters.</p>
+          <p className="text-sm font-normal leading-6 text-loot-muted">Không có nguồn nghe phù hợp với bộ lọc này.</p>
         </Card>
       )}
     </>

@@ -20,7 +20,7 @@ export default function FeatureCard({ count, description, icon, title, to }) {
       </div>
 
       <Link
-        className="inline-flex h-10 items-center justify-center rounded-xl border border-loot-border bg-loot-card px-4 text-sm font-medium text-loot-text transition-colors hover:bg-loot-selected"
+        className="mt-auto inline-flex h-10 w-full items-center justify-center rounded-xl border border-loot-border bg-loot-card px-4 text-sm font-medium text-loot-text transition-colors hover:bg-loot-selected"
         to={to}
       >
         Open

@@ -64,12 +64,12 @@ export default function ListenTypePage() {
       <>
         <PageHeader
           eyebrow="Listen & Type"
-          title="Listen and type"
-          description="Hear one sentence, type it back, then compare word by word."
+          title="Nghe và gõ lại"
+          description="Nghe một câu, gõ lại, rồi so sánh từng từ."
         />
 
         <Card>
-          <p className="text-sm font-normal leading-6 text-loot-muted">No listening data is ready yet.</p>
+          <p className="text-sm font-normal leading-6 text-loot-muted">Chưa có dữ liệu nghe.</p>
         </Card>
       </>
     );
@@ -99,8 +99,8 @@ export default function ListenTypePage() {
     <>
       <PageHeader
         eyebrow="Listen & Type"
-        title="Listen and type"
-        description="Use English text to speech, type what you hear, then compare your answer word by word."
+        title="Nghe và gõ lại"
+        description="Dùng giọng đọc tiếng Anh, gõ câu bạn nghe được, rồi so sánh từng từ."
       />
 
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_280px]">
@@ -114,36 +114,36 @@ export default function ListenTypePage() {
           </div>
 
           <label className="mt-6 block text-sm font-medium text-loot-text" htmlFor="listen-answer">
-            What did you hear?
+            Bạn nghe được gì?
           </label>
           <textarea
             className="mt-2 min-h-32 w-full resize-y rounded-[20px] border border-loot-border bg-loot-card p-4 text-sm font-normal leading-6 text-loot-text outline-none transition-colors placeholder:text-loot-muted focus:bg-loot-selected"
             id="listen-answer"
-            placeholder="Type the English sentence here..."
+            placeholder="Gõ câu tiếng Anh bạn nghe được..."
             value={answer}
             onChange={(event) => setAnswer(event.target.value)}
           />
 
           <div className="mt-5 flex flex-wrap gap-3">
             <button className={primaryButtonClass} type="button" onClick={handleCheck}>
-              Check answer
+              Kiểm tra đáp án
             </button>
             <button className={secondaryButtonClass} type="button" onClick={handleNext}>
-              Next sentence
+              Câu tiếp theo
             </button>
           </div>
         </Card>
 
         <Card className="p-5">
-          <p className="text-sm font-medium text-loot-text">Result</p>
+          <p className="text-sm font-medium text-loot-text">Kết quả</p>
           {!result ? (
             <p className="mt-2 text-sm font-normal leading-6 text-loot-muted">
-              Your word-by-word comparison will appear here after checking.
+              Phần so sánh từng từ sẽ hiện ở đây sau khi kiểm tra.
             </p>
           ) : (
             <>
               <p className="mt-2 text-sm font-medium leading-6 text-loot-text">
-                {result.isCorrect ? 'Perfect. Nice listening.' : 'Not quite. Saved to Mistake Book.'}
+                {result.isCorrect ? 'Chuẩn rồi. Nghe tốt đó.' : 'Chưa đúng. Đã lưu vào Mistake Book.'}
               </p>
               <div className="mt-4 space-y-2">
                 {result.rows.map((row) => (
@@ -152,12 +152,12 @@ export default function ListenTypePage() {
                     className="rounded-xl border border-loot-border bg-loot-selected p-3 text-sm font-normal text-loot-muted"
                   >
                     <span className="font-medium text-loot-text">{row.target || '(extra)'}</span>
-                    {row.status === 'wrong' ? <span> / typed: {row.typed || '(missing)'}</span> : null}
+                    {row.status === 'wrong' ? <span> / bạn gõ: {row.typed || '(thiếu)'}</span> : null}
                   </div>
                 ))}
               </div>
               <div className="mt-4 rounded-[20px] border border-loot-border bg-loot-card p-4">
-                <p className="text-sm font-normal text-loot-muted">Meaning</p>
+                <p className="text-sm font-normal text-loot-muted">Nghĩa</p>
                 <p className="mt-1 text-sm font-medium leading-6 text-loot-text">{item.meaning}</p>
               </div>
             </>

@@ -39,8 +39,8 @@ function buildQuestions() {
     ...cycleItems(words, 5).map((item, index) => ({
       id: `word-${index}-${item.id}`,
       type: 'boss-word',
-      label: 'TOEIC word',
-      prompt: `What does "${item.word}" mean?`,
+      label: 'Từ TOEIC',
+      prompt: `Nghĩa của "${item.word}" là gì?`,
       answer: item.meaning,
       options: makeOptions(item.meaning, wordMeanings),
       sourceId: item.id,
@@ -48,8 +48,8 @@ function buildQuestions() {
     ...cycleItems(listeningItems, 5).map((item, index) => ({
       id: `listen-${index}-${item.id}`,
       type: 'boss-listening',
-      label: 'Listen & Type',
-      prompt: 'Type the sentence you hear.',
+      label: 'Nghe & gõ',
+      prompt: 'Gõ câu bạn nghe được.',
       answer: item.sentence,
       audioText: item.sentence,
       sourceId: item.id,
@@ -59,7 +59,7 @@ function buildQuestions() {
       id: `phrase-${index}-${item.id}`,
       type: 'boss-real-talk',
       label: 'Real Talk',
-      prompt: `Full form of "${item.phrase}"`,
+      prompt: `Dạng đầy đủ của "${item.phrase}"`,
       answer: item.full,
       options: makeOptions(item.full, phraseFullForms),
       sourceId: item.id,
@@ -68,7 +68,7 @@ function buildQuestions() {
       id: `gamer-${index}-${item.id}`,
       type: 'boss-gamer-comms',
       label: 'Gamer Comms',
-      prompt: `Meaning of "${item.term}"`,
+      prompt: `Nghĩa của "${item.term}"`,
       answer: item.meaning,
       options: makeOptions(item.meaning, gamerMeanings),
       sourceId: item.id,
@@ -148,7 +148,7 @@ export default function BossTestPage() {
       <PageHeader
         eyebrow="Weekly Boss"
         title="Boss Test"
-        description="A 20-question mixed check from TOEIC words, Listen & Type, Real Talk, and Gamer Comms."
+        description="Bài kiểm tra 20 câu trộn từ TOEIC, Listen & Type, Real Talk, và Gamer Comms."
       />
 
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_280px]">
@@ -166,7 +166,7 @@ export default function BossTestPage() {
               {question.inputMode === 'text' ? (
                 <input
                   className="mt-4 h-10 w-full rounded-xl border border-loot-border bg-loot-card px-3 text-sm font-normal text-loot-text outline-none focus:bg-loot-selected"
-                  placeholder="Type your answer..."
+                  placeholder="Gõ đáp án..."
                   value={answers[question.id] || ''}
                   onChange={(event) => setAnswer(question.id, event.target.value)}
                 />
@@ -192,8 +192,8 @@ export default function BossTestPage() {
               {result ? (
                 <p className="mt-4 text-sm font-medium text-loot-text">
                   {result.questions.find((item) => item.id === question.id)?.isCorrect
-                    ? 'Correct'
-                    : `Answer: ${question.answer}`}
+                    ? 'Đúng'
+                    : `Đáp án: ${question.answer}`}
                 </p>
               ) : null}
             </Card>
@@ -201,23 +201,23 @@ export default function BossTestPage() {
         </div>
 
         <Card className="p-5">
-          <p className="text-sm font-medium text-loot-text">Score</p>
+          <p className="text-sm font-medium text-loot-text">Điểm</p>
           {result ? (
             <p className="mt-2 text-lg font-medium text-loot-text">
               {result.score}/{result.total}
             </p>
           ) : (
-            <p className="mt-2 text-sm font-normal leading-6 text-loot-muted">Submit when all answers are ready.</p>
+            <p className="mt-2 text-sm font-normal leading-6 text-loot-muted">Nộp bài khi bạn đã trả lời xong.</p>
           )}
           <p className="mt-4 text-sm font-normal leading-6 text-loot-muted">
-            Best score: {bestScore ? `${bestScore.score}/${bestScore.total} (${bestScore.percent}%)` : 'not yet'}
+            Điểm tốt nhất: {bestScore ? `${bestScore.score}/${bestScore.total} (${bestScore.percent}%)` : 'chưa có'}
           </p>
           <div className="mt-5 flex flex-col gap-3">
             <button className={primaryButtonClass} type="button" onClick={handleSubmit}>
-              Submit test
+              Nộp bài
             </button>
             <button className={secondaryButtonClass} type="button" onClick={handleReset}>
-              Reset answers
+              Làm lại
             </button>
           </div>
         </Card>

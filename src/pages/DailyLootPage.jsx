@@ -62,19 +62,19 @@ export default function DailyLootPage() {
   const previewRows = [
     {
       label: 'Word Loot',
-      value: joinValues(dailyLoot.words, 'word', 'No words ready yet.'),
+      value: joinValues(dailyLoot.words, 'word', 'Chưa có từ nào.'),
     },
     {
       label: 'Real Talk',
-      value: joinValues(dailyLoot.phrases, 'phrase', 'No phrases ready yet.'),
+      value: joinValues(dailyLoot.phrases, 'phrase', 'Chưa có cụm nào.'),
     },
     {
       label: 'Gamer Comms',
-      value: joinValues(dailyLoot.gamerTerms, 'term', 'No comms ready yet.'),
+      value: joinValues(dailyLoot.gamerTerms, 'term', 'Chưa có comms nào.'),
     },
     {
       label: 'Listen & Type',
-      value: joinValues(dailyLoot.listeningItems, 'sentence', 'No listening item ready yet.'),
+      value: joinValues(dailyLoot.listeningItems, 'sentence', 'Chưa có câu nghe nào.'),
     },
   ];
 

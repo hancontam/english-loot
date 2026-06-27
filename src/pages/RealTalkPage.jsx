@@ -46,11 +46,11 @@ export default function RealTalkPage() {
         <PageHeader
           eyebrow="Real Talk"
           title="Real talk and reduced speech"
-          description="Learn phrases in context, then repeat them until they feel natural."
+          description="Học cụm theo ngữ cảnh, rồi lặp lại đến khi nghe tự nhiên."
         />
 
         <Card>
-          <p className="text-sm font-normal leading-6 text-loot-muted">No phrase data is ready yet.</p>
+          <p className="text-sm font-normal leading-6 text-loot-muted">Chưa có dữ liệu Real Talk.</p>
         </Card>
       </>
     );
@@ -58,7 +58,7 @@ export default function RealTalkPage() {
 
   function handleQuiz(answer) {
     if (answer === currentPhrase.full) {
-      setQuizResult('Correct. This phrase is starting to stick.');
+      setQuizResult('Đúng rồi. Cụm này đang bắt đầu dính vào trí nhớ.');
       return;
     }
 
@@ -68,7 +68,7 @@ export default function RealTalkPage() {
       userAnswer: answer,
       sourceId: currentPhrase.id,
     });
-    setQuizResult('Not yet. Saved to Mistake Book for review.');
+    setQuizResult('Chưa đúng. Đã lưu vào Mistake Book để ôn lại.');
   }
 
   function handleNext() {
@@ -82,7 +82,7 @@ export default function RealTalkPage() {
       <PageHeader
         eyebrow="Real Talk"
         title="Real talk and reduced speech"
-        description="Learn each phrase in context, listen to it, then check the full form with a tiny quiz."
+        description="Học từng cụm theo ngữ cảnh, nghe ví dụ, rồi kiểm tra dạng đầy đủ bằng quiz ngắn."
       />
 
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_280px]">
@@ -101,13 +101,13 @@ export default function RealTalkPage() {
           </div>
 
           <div className="mt-6 rounded-[20px] border border-loot-border bg-loot-selected p-5">
-            <p className="text-sm font-medium text-loot-text">Example</p>
+            <p className="text-sm font-medium text-loot-text">Ví dụ</p>
             <p className="mt-2 text-sm font-normal leading-6 text-loot-muted">{currentPhrase.example}</p>
           </div>
 
           {isRevealed ? (
             <div className="mt-4 rounded-[20px] border border-loot-border bg-loot-card p-5">
-              <p className="text-sm font-normal text-loot-muted">Full form</p>
+              <p className="text-sm font-normal text-loot-muted">Dạng đầy đủ</p>
               <p className="mt-1 text-base font-medium text-loot-text">{currentPhrase.full}</p>
               <p className="mt-3 text-sm font-normal text-loot-muted">{currentPhrase.meaning}</p>
               <p className="mt-2 text-sm font-normal leading-6 text-loot-muted">{currentPhrase.translation}</p>
@@ -116,10 +116,10 @@ export default function RealTalkPage() {
 
           <div className="mt-6 flex flex-wrap gap-3">
             <button className={secondaryButtonClass} type="button" onClick={() => setIsRevealed((value) => !value)}>
-              {isRevealed ? 'Hide answer' : 'Reveal answer'}
+              {isRevealed ? 'Ẩn đáp án' : 'Mở đáp án'}
             </button>
             <button className={primaryButtonClass} type="button" onClick={handleNext}>
-              Next phrase
+              Cụm tiếp theo
             </button>
           </div>
         </Card>
@@ -127,7 +127,7 @@ export default function RealTalkPage() {
         <Card className="p-5">
           <p className="text-sm font-medium text-loot-text">Mini quiz</p>
           <p className="mt-2 text-sm font-normal leading-6 text-loot-muted">
-            Choose the full form for this phrase.
+            Chọn dạng đầy đủ của cụm này.
           </p>
           <div className="mt-4 space-y-3">
             {quizOptions.map((option) => (

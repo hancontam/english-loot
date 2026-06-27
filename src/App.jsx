@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import AppLayout from './components/AppLayout.jsx';
 import BossTestPage from './pages/BossTestPage.jsx';
@@ -8,6 +9,7 @@ import MistakeBookPage from './pages/MistakeBookPage.jsx';
 import RealTalkPage from './pages/RealTalkPage.jsx';
 import VideoFarmPage from './pages/VideoFarmPage.jsx';
 import WordLootPage from './pages/WordLootPage.jsx';
+import { loadAppLogo } from './utils/appLogo.js';
 
 export const routes = [
   { path: '/', label: 'Daily Loot', element: <DailyLootPage /> },
@@ -21,6 +23,31 @@ export const routes = [
 ];
 
 export default function App() {
+  useEffect(() => {
+    let isMounted = true;
+
+    loadAppLogo().then((logo) => {
+      if (!isMounted || !logo?.src || typeof document === 'undefined') {
+        return;
+      }
+
+      let favicon = document.querySelector('link[rel~="icon"]');
+
+      if (!favicon) {
+        favicon = document.createElement('link');
+        favicon.rel = 'icon';
+        document.head.appendChild(favicon);
+      }
+
+      favicon.type = 'image/png';
+      favicon.href = logo.src;
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   return (
     <AppLayout routes={routes}>
       <Routes>

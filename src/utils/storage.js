@@ -68,6 +68,47 @@ function makeMistakeId() {
   return `mistake-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 }
 
+function sanitizeMistake(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    return null;
+  }
+
+  return {
+    id: typeof value.id === 'string' && value.id.trim() ? value.id.trim() : makeMistakeId(),
+    type: typeof value.type === 'string' && value.type.trim() ? value.type.trim() : 'practice',
+    target: typeof value.target === 'string' && value.target.trim() ? value.target.trim() : 'Unknown target',
+    userAnswer: typeof value.userAnswer === 'string' ? value.userAnswer.trim() : '',
+    sourceId: typeof value.sourceId === 'string' ? value.sourceId.trim() : '',
+    createdAt: typeof value.createdAt === 'string' && value.createdAt.trim() ? value.createdAt : new Date().toISOString(),
+  };
+}
+
+function sanitizeMistakes(value) {
+  return toArray(value).map(sanitizeMistake).filter(Boolean);
+}
+
+function sanitizeBossScore(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    return null;
+  }
+
+  const total = toNumber(value.total, 0);
+  const score = toNumber(value.score, 0);
+  const percent = total > 0 ? Math.round((score / total) * 100) : toNumber(value.percent, 0);
+
+  return {
+    id: typeof value.id === 'string' && value.id.trim() ? value.id.trim() : `boss-${Date.now()}`,
+    score,
+    total,
+    percent,
+    createdAt: typeof value.createdAt === 'string' && value.createdAt.trim() ? value.createdAt : new Date().toISOString(),
+  };
+}
+
+function sanitizeBossScores(value) {
+  return toArray(value).map(sanitizeBossScore).filter(Boolean);
+}
+
 export function sanitizeProgress(value) {
   const source = value && typeof value === 'object' && !Array.isArray(value) ? value : {};
 
@@ -77,8 +118,8 @@ export function sanitizeProgress(value) {
     level: toNumber(source.level, defaultProgress.level, 1),
     knownWords: uniqueStrings(source.knownWords),
     hardWords: uniqueStrings(source.hardWords),
-    mistakes: toArray(source.mistakes),
-    bossScores: toArray(source.bossScores),
+    mistakes: sanitizeMistakes(source.mistakes),
+    bossScores: sanitizeBossScores(source.bossScores),
     dailyLootHistory: toArray(source.dailyLootHistory),
   };
 }
@@ -173,21 +214,23 @@ export function markWordHard(wordId) {
 }
 
 export function addMistake(mistake) {
-  if (!mistake || typeof mistake !== 'object' || Array.isArray(mistake)) {
+  const nextMistake = sanitizeMistake(mistake);
+
+  if (!nextMistake) {
     return readProgress();
   }
 
-  const nextMistake = {
-    id: typeof mistake.id === 'string' && mistake.id.trim() ? mistake.id.trim() : makeMistakeId(),
-    type: typeof mistake.type === 'string' && mistake.type.trim() ? mistake.type.trim() : 'practice',
-    target: typeof mistake.target === 'string' && mistake.target.trim() ? mistake.target.trim() : 'Unknown target',
-    userAnswer: typeof mistake.userAnswer === 'string' ? mistake.userAnswer.trim() : '',
-    sourceId: typeof mistake.sourceId === 'string' ? mistake.sourceId.trim() : '',
-    createdAt: typeof mistake.createdAt === 'string' ? mistake.createdAt : new Date().toISOString(),
-  };
-
   return updateProgress((currentProgress) => ({
-    mistakes: [nextMistake, ...toArray(currentProgress.mistakes)],
+    mistakes: [
+      nextMistake,
+      ...sanitizeMistakes(currentProgress.mistakes).filter(
+        (savedMistake) =>
+          savedMistake.type !== nextMistake.type ||
+          savedMistake.target !== nextMistake.target ||
+          savedMistake.userAnswer !== nextMistake.userAnswer ||
+          savedMistake.sourceId !== nextMistake.sourceId,
+      ),
+    ],
   }));
 }
 

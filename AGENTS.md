@@ -27,6 +27,92 @@ The app combines:
 - No login.
 - No database.
 
+## Content Source Policy
+
+Use approved sources as references only. Create original English Loot app data inspired by reputable topics, meanings, formats, and learning methods.
+
+Before adding or revising learning data, browse or verify the relevant approved sources when network access is available.
+
+TOEIC source of truth:
+- ETS TOEIC Preparation Materials.
+- ETS TOEIC Listening & Reading Examinee Handbook.
+- IIBC TOEIC Listening & Reading Sample Questions.
+- TOEIC Taiwan sample questions.
+
+Use TOEIC sources for:
+- Common TOEIC topics.
+- TOEIC-style sentence length.
+- Question style and trap patterns.
+- Listening and reading format awareness.
+
+Do not:
+- Copy official TOEIC test questions.
+- Reproduce ETS/IIBC/TOEIC sample questions.
+- Claim any generated dataset is official ETS vocabulary.
+- Label data as `Official TOEIC vocabulary`.
+
+Use this wording instead:
+- `TOEIC-style curated vocabulary`.
+- `Based on official TOEIC sample topics and reputable learning references`.
+
+TOEIC vocabulary references:
+- Barron's 600 Essential Words for the TOEIC.
+- Oxford Tactics for TOEIC Listening and Reading Test.
+
+Use these books only for topic and difficulty inspiration. Do not copy full copyrighted word lists or original examples into the app.
+
+Level and dictionary checks:
+- Oxford 3000 / Oxford 5000.
+- Cambridge Dictionary.
+
+Use these for:
+- A1 to B2 level checking.
+- Part of speech checks.
+- Meaning and pronunciation checks.
+- Natural example style.
+- Keeping app vocabulary practical for TOEIC and real life English.
+
+Real Talk and chat abbreviations:
+- Merriam-Webster common texting abbreviations.
+- BBC Learning English.
+
+Use these for common items such as:
+- `nvm`
+- `brb`
+- `btw`
+- `idk`
+- `tbh`
+- `ngl`
+- `rn`
+- `afk`
+
+Gamer / Valorant English:
+- Red Bull Valorant terms glossary.
+- Valorant Wiki Terminology.
+- Mobalytics Valorant Terms.
+
+Use these for terms such as:
+- `rotate`
+- `peek`
+- `hold`
+- `flank`
+- `trade`
+- `save`
+- `eco`
+- `full buy`
+- `plant`
+- `defuse`
+- `nt`
+- `gg`
+- `wp`
+- `mb`
+
+Dataset rules:
+- Keep existing JSON schemas unchanged unless the user approves a schema change.
+- Write original examples, translations, quiz options, and listening sentences.
+- Verify meanings and usage before adding items.
+- Keep TOEIC content TOEIC-style, not copied from official or copyrighted materials.
+
 ## Locked UI Direction
 
 Preserve the approved UI direction.

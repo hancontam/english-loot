@@ -43,6 +43,18 @@ function getWordStatus(item, progress) {
   return 'new';
 }
 
+function getStatusLabel(status) {
+  if (status === 'hard') {
+    return 'từ khó';
+  }
+
+  if (status === 'known') {
+    return 'đã biết';
+  }
+
+  return 'mới';
+}
+
 function getWordWeight(item, progress) {
   const status = getWordStatus(item, progress);
 
@@ -96,12 +108,12 @@ export default function WordLootPage() {
       <>
         <PageHeader
           eyebrow="Word Loot"
-          title="Tu vung TOEIC theo ngu canh"
-          description="Moi card co nghia tieng Viet, vi du tieng Anh, ban dich tu nhien va trap words de tranh nghe nham."
+          title="Từ vựng TOEIC theo ngữ cảnh"
+          description="Mỗi card có nghĩa tiếng Việt, ví dụ tiếng Anh, bản dịch tự nhiên và trap words để tránh nghe nhầm."
         />
 
         <Card>
-          <p className="text-sm font-normal leading-6 text-loot-muted">No word data is ready yet.</p>
+          <p className="text-sm font-normal leading-6 text-loot-muted">Chưa có dữ liệu từ vựng.</p>
         </Card>
       </>
     );
@@ -134,8 +146,8 @@ export default function WordLootPage() {
     <>
       <PageHeader
         eyebrow="Word Loot"
-        title="Tu vung TOEIC theo ngu canh"
-        description="Moi card co nghia tieng Viet, vi du tieng Anh, ban dich tu nhien va trap words de tranh nghe nham."
+        title="Từ vựng TOEIC theo ngữ cảnh"
+        description="Mỗi card có nghĩa tiếng Việt, ví dụ tiếng Anh, bản dịch tự nhiên và trap words để tránh nghe nhầm."
       />
 
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_280px]">
@@ -168,16 +180,16 @@ export default function WordLootPage() {
             </div>
           ) : (
             <div className="mt-6 rounded-[20px] border border-loot-border bg-loot-selected p-5">
-              <p className="text-sm font-medium text-loot-text">Try first, then reveal.</p>
+              <p className="text-sm font-medium text-loot-text">Thử đoán trước, rồi mở nghĩa.</p>
               <p className="mt-2 text-sm font-normal leading-6 text-loot-muted">
-                Listen to the word and guess the meaning from your memory before opening the answer.
+                Nghe từ và đoán nghĩa từ trí nhớ trước khi mở đáp án.
               </p>
             </div>
           )}
 
           <div className="mt-6 flex flex-wrap gap-3">
             <button className={secondaryButtonClass} type="button" onClick={() => setIsRevealed((value) => !value)}>
-              {isRevealed ? 'Hide meaning' : 'Reveal meaning'}
+              {isRevealed ? 'Ẩn nghĩa' : 'Mở nghĩa'}
             </button>
             <button
               aria-pressed={currentStatus === 'hard'}
@@ -185,7 +197,7 @@ export default function WordLootPage() {
               type="button"
               onClick={handleHard}
             >
-              Hard
+              Từ khó
             </button>
             <button
               aria-pressed={currentStatus === 'known'}
@@ -193,28 +205,28 @@ export default function WordLootPage() {
               type="button"
               onClick={handleKnown}
             >
-              Known
+              Đã biết
             </button>
             <button className={secondaryButtonClass} type="button" onClick={handleNext}>
-              Next card
+              Thẻ tiếp theo
             </button>
           </div>
         </Card>
 
         <Card className="p-5">
-          <p className="text-sm font-medium text-loot-text">Saved progress</p>
+          <p className="text-sm font-medium text-loot-text">Tiến độ đã lưu</p>
           <div className="mt-4 space-y-3">
             <div className="rounded-[20px] border border-loot-border bg-loot-selected p-4">
-              <p className="text-sm font-normal text-loot-muted">Known words</p>
+              <p className="text-sm font-normal text-loot-muted">Từ đã biết</p>
               <p className="mt-1 text-base font-medium text-loot-text">{progress.knownWords.length}</p>
             </div>
             <div className="rounded-[20px] border border-loot-border bg-loot-selected p-4">
-              <p className="text-sm font-normal text-loot-muted">Hard words</p>
+              <p className="text-sm font-normal text-loot-muted">Từ khó</p>
               <p className="mt-1 text-base font-medium text-loot-text">{progress.hardWords.length}</p>
             </div>
             <div className="rounded-[20px] border border-loot-border bg-loot-selected p-4">
-              <p className="text-sm font-normal text-loot-muted">Current card</p>
-              <p className="mt-1 text-base font-medium text-loot-text">{currentStatus}</p>
+              <p className="text-sm font-normal text-loot-muted">Thẻ hiện tại</p>
+              <p className="mt-1 text-base font-medium text-loot-text">{getStatusLabel(currentStatus)}</p>
             </div>
           </div>
         </Card>

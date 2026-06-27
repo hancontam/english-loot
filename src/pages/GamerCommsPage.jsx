@@ -43,11 +43,11 @@ export default function GamerCommsPage() {
         <PageHeader
           eyebrow="Gamer Comms"
           title="Short comms, right moment"
-          description="Practice clean match calls and chat phrases in context."
+          description="Luyện câu call ngắn, sạch, đúng lúc trong ngữ cảnh game."
         />
 
         <Card>
-          <p className="text-sm font-normal leading-6 text-loot-muted">No gamer comms data is ready yet.</p>
+          <p className="text-sm font-normal leading-6 text-loot-muted">Chưa có dữ liệu Gamer Comms.</p>
         </Card>
       </>
     );
@@ -55,7 +55,7 @@ export default function GamerCommsPage() {
 
   function handleQuiz(answer) {
     if (answer === currentTerm.meaning) {
-      setQuizResult('Correct. That comm is ready for match chat.');
+      setQuizResult('Đúng rồi. Comms này sẵn sàng dùng trong match.');
       return;
     }
 
@@ -65,7 +65,7 @@ export default function GamerCommsPage() {
       userAnswer: answer,
       sourceId: currentTerm.id,
     });
-    setQuizResult('Not yet. Saved to Mistake Book for review.');
+    setQuizResult('Chưa đúng. Đã lưu vào Mistake Book để ôn lại.');
   }
 
   function handleNext() {
@@ -79,7 +79,7 @@ export default function GamerCommsPage() {
       <PageHeader
         eyebrow="Gamer Comms"
         title="Short comms, right moment"
-        description="Practice Valorant, voice chat, and quick game English with tiny context checks."
+        description="Luyện Valorant, voice chat, và game English nhanh bằng kiểm tra ngữ cảnh nhỏ."
       />
 
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_280px]">
@@ -92,19 +92,19 @@ export default function GamerCommsPage() {
                   {currentTerm.category}
                 </span>
               </div>
-              <p className="mt-2 text-sm font-normal text-loot-muted">Say it fast, keep it clean.</p>
+              <p className="mt-2 text-sm font-normal text-loot-muted">Nói ngắn, rõ, đúng lúc.</p>
             </div>
             <AudioButton text={`${currentTerm.term}. ${currentTerm.example}`} />
           </div>
 
           <div className="mt-6 rounded-[20px] border border-loot-border bg-loot-selected p-5">
-            <p className="text-sm font-medium text-loot-text">Game example</p>
+            <p className="text-sm font-medium text-loot-text">Ví dụ trong game</p>
             <p className="mt-2 text-sm font-normal leading-6 text-loot-muted">{currentTerm.example}</p>
           </div>
 
           {isRevealed ? (
             <div className="mt-4 rounded-[20px] border border-loot-border bg-loot-card p-5">
-              <p className="text-sm font-normal text-loot-muted">Meaning</p>
+              <p className="text-sm font-normal text-loot-muted">Nghĩa</p>
               <p className="mt-1 text-base font-medium text-loot-text">{currentTerm.meaning}</p>
               <p className="mt-3 text-sm font-normal leading-6 text-loot-muted">{currentTerm.translation}</p>
             </div>
@@ -112,10 +112,10 @@ export default function GamerCommsPage() {
 
           <div className="mt-6 flex flex-wrap gap-3">
             <button className={secondaryButtonClass} type="button" onClick={() => setIsRevealed((value) => !value)}>
-              {isRevealed ? 'Hide meaning' : 'Reveal meaning'}
+              {isRevealed ? 'Ẩn nghĩa' : 'Mở nghĩa'}
             </button>
             <button className={primaryButtonClass} type="button" onClick={handleNext}>
-              Next comm
+              Comms tiếp theo
             </button>
           </div>
         </Card>
@@ -123,7 +123,7 @@ export default function GamerCommsPage() {
         <Card className="p-5">
           <p className="text-sm font-medium text-loot-text">Mini quiz</p>
           <p className="mt-2 text-sm font-normal leading-6 text-loot-muted">
-            Choose the best meaning for this comm.
+            Chọn nghĩa đúng nhất cho comm này.
           </p>
           <div className="mt-4 space-y-3">
             {quizOptions.map((option) => (
