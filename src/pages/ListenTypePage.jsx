@@ -3,7 +3,11 @@ import AudioButton from '../components/AudioButton.jsx';
 import Card from '../components/Card.jsx';
 import PageHeader from '../components/PageHeader.jsx';
 import listeningItems from '../data/listeningItems.json';
-import { addMistake } from '../lib/storage.js';
+import { storageRepository } from '../infrastructure/storageRepository.js';
+import { makeListenTypeLearningEventPayload } from '../utils/learning/events.js';
+import { LISTENING_DOMAIN } from '../utils/learning/itemKeys.js';
+import { buildScoredMasteryRecord } from '../utils/learning/mastery.js';
+import { scoreListenTypeAnswer } from '../utils/learning/scoringStrategies.js';
 
 function safeItems() {
   return Array.isArray(listeningItems) ? listeningItems : [];
@@ -15,38 +19,6 @@ function pickNextItem(previousId = '') {
   const index = Math.floor(Math.random() * candidates.length);
 
   return candidates[index] || null;
-}
-
-function normalizeText(value) {
-  return String(value || '')
-    .toLowerCase()
-    .replace(/[^\w\s']/g, '')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-function compareAnswer(userAnswer, targetAnswer) {
-  const targetWords = normalizeText(targetAnswer).split(' ').filter(Boolean);
-  const answerWords = normalizeText(userAnswer).split(' ').filter(Boolean);
-  const maxLength = Math.max(targetWords.length, answerWords.length);
-  const rows = [];
-
-  for (let index = 0; index < maxLength; index += 1) {
-    const target = targetWords[index] || '';
-    const typed = answerWords[index] || '';
-
-    rows.push({
-      key: `${index}-${target}-${typed}`,
-      target,
-      typed,
-      status: target && typed && target === typed ? 'correct' : 'wrong',
-    });
-  }
-
-  return {
-    isCorrect: normalizeText(userAnswer) === normalizeText(targetAnswer),
-    rows,
-  };
 }
 
 const primaryButtonClass =
@@ -76,15 +48,25 @@ export default function ListenTypePage() {
   }
 
   function handleCheck() {
-    const nextResult = compareAnswer(answer, item.sentence);
+    const nextResult = scoreListenTypeAnswer({
+      userAnswer: answer,
+      targetAnswer: item.sentence,
+      normalForm: item.normalForm,
+    });
+
     setResult(nextResult);
+    storageRepository.updateItemMastery(LISTENING_DOMAIN, item.id, (currentRecord) =>
+      buildScoredMasteryRecord(currentRecord, nextResult),
+    );
+    storageRepository.addLearningEvent(makeListenTypeLearningEventPayload(item, answer, nextResult));
 
     if (!nextResult.isCorrect) {
-      addMistake({
+      storageRepository.addMistake({
         type: 'listening',
         target: item.sentence,
         userAnswer: answer,
         sourceId: item.id,
+        mistakeCategories: nextResult.mistakeCategories,
       });
     }
   }

@@ -176,6 +176,7 @@ function sanitizeMistake(value) {
     target: typeof value.target === 'string' && value.target.trim() ? value.target.trim() : 'Unknown target',
     userAnswer: typeof value.userAnswer === 'string' ? value.userAnswer.trim() : '',
     sourceId: typeof value.sourceId === 'string' ? value.sourceId.trim() : '',
+    mistakeCategories: uniqueStrings(value.mistakeCategories),
     createdAt: typeof value.createdAt === 'string' && value.createdAt.trim() ? value.createdAt : new Date().toISOString(),
   };
 }

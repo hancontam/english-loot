@@ -1,4 +1,7 @@
 export const WORD_DOMAIN = 'word';
+export const PHRASE_DOMAIN = 'phrase';
+export const GAMER_DOMAIN = 'gamer';
+export const LISTENING_DOMAIN = 'listening';
 
 function cleanKeyPart(value) {
   return typeof value === 'string' ? value.trim() : '';

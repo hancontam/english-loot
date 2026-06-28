@@ -107,6 +107,58 @@ export function getKnownReviewDelay(mastery) {
   return 1;
 }
 
+export function buildScoredMasteryRecord(
+  currentRecord,
+  scoringResult,
+  {
+    correctIncrease = 10,
+    partialDecrease = 2,
+    wrongDecrease = 12,
+    partialThreshold = 0.5,
+  } = {},
+  now = new Date(),
+) {
+  const score = Number(scoringResult?.score || 0);
+  const isCorrect = Boolean(scoringResult?.isCorrect);
+  const beforeRecord = currentRecord || {};
+
+  if (isCorrect) {
+    const nextMastery = clampMastery(Number(beforeRecord.mastery || 20) + correctIncrease);
+    const intervalDays = getKnownReviewDelay(nextMastery);
+
+    return {
+      ...beforeRecord,
+      mastery: nextMastery,
+      exposureCount: Number(beforeRecord.exposureCount || 0) + 1,
+      correctCount: Number(beforeRecord.correctCount || 0) + 1,
+      currentCorrectStreak: Number(beforeRecord.currentCorrectStreak || 0) + 1,
+      lastSeenAt: now.toISOString(),
+      nextReviewAt: addDays(now, intervalDays),
+      intervalDays,
+      lastResult: 'correct',
+      mistakeCategories: [],
+    };
+  }
+
+  const isPartial = score >= partialThreshold;
+  const nextMastery = clampMastery(
+    Number(beforeRecord.mastery || 20) - (isPartial ? partialDecrease : wrongDecrease),
+  );
+
+  return {
+    ...beforeRecord,
+    mastery: nextMastery,
+    exposureCount: Number(beforeRecord.exposureCount || 0) + 1,
+    wrongCount: Number(beforeRecord.wrongCount || 0) + 1,
+    currentCorrectStreak: 0,
+    lastSeenAt: now.toISOString(),
+    nextReviewAt: isPartial ? addDays(now, 1) : now.toISOString(),
+    intervalDays: isPartial ? 1 : 0,
+    lastResult: isPartial ? 'partial' : 'wrong',
+    mistakeCategories: Array.isArray(scoringResult?.mistakeCategories) ? scoringResult.mistakeCategories : [],
+  };
+}
+
 export function buildWordMasteryRecord(item, signal, progressSnapshot, now = new Date()) {
   const beforeRecord = getWordMasteryRecord(item, progressSnapshot);
 

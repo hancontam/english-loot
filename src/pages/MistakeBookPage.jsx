@@ -3,14 +3,7 @@ import Card from "../components/Card.jsx";
 import DeleteConfirmModal from "../components/DeleteConfirmModal.jsx";
 import PageHeader from "../components/PageHeader.jsx";
 import { clearMistakes, getProgress, removeMistake } from "../lib/storage.js";
-
-function normalizeText(value) {
-  return String(value || "")
-    .toLowerCase()
-    .replace(/[^\w\s']/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-}
+import { normalizeAnswer } from "../utils/learning/scoringStrategies.js";
 
 function groupMistakes(mistakes) {
   return (Array.isArray(mistakes) ? mistakes : []).reduce((groups, mistake) => {
@@ -54,7 +47,7 @@ export default function MistakeBookPage() {
 
   function handleRetryCheck(mistake) {
     const answer = retryAnswers[mistake.id] || "";
-    const isCorrect = normalizeText(answer) === normalizeText(mistake.target);
+    const isCorrect = normalizeAnswer(answer) === normalizeAnswer(mistake.target);
 
     setRetryResults((current) => ({
       ...current,

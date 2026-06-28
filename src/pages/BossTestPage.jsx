@@ -7,14 +7,7 @@ import listeningItems from '../data/listeningItems.json';
 import phrases from '../data/phrases.json';
 import words from '../data/words.json';
 import { addMistake, getProgress, saveBossScore } from '../lib/storage.js';
-
-function normalizeText(value) {
-  return String(value || '')
-    .toLowerCase()
-    .replace(/[^\w\s']/g, '')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
+import { normalizeAnswer } from '../utils/learning/scoringStrategies.js';
 
 function cycleItems(items, count) {
   if (!Array.isArray(items) || items.length === 0) {
@@ -109,7 +102,7 @@ export default function BossTestPage() {
     let score = 0;
     const checkedQuestions = questions.map((question) => {
       const userAnswer = answers[question.id] || '';
-      const isCorrect = normalizeText(userAnswer) === normalizeText(question.answer);
+      const isCorrect = normalizeAnswer(userAnswer) === normalizeAnswer(question.answer);
 
       if (isCorrect) {
         score += 1;

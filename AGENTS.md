@@ -27,6 +27,26 @@ The app combines:
 - No login.
 - No database.
 
+## Architecture Lock
+
+Keep the current source structure and migrate learning behavior gradually, one flow at a time.
+
+Layer rules:
+- `src/components`: UI only. No learning algorithms, scoring logic, mastery math, mistake taxonomy, weighted selection, or learning-progress storage access.
+- `src/pages`: page UI and interaction only. Pages may hold form/selected-item state and call learning helpers or infrastructure functions.
+- `src/data`: static learning content only. No functions or progress state.
+- `src/utils/learning`: Learning Engine layer. Keep logic in focused modules such as `itemKeys.js`, `mastery.js`, `selectors.js`, `events.js`, `scoringStrategies.js`, and `mistakeTaxonomy.js`.
+- `src/infrastructure`: persistence and adapters such as `storageRepository.js`.
+- `src/lib`: compatibility exports only. Do not add new business logic here.
+
+Do not merge helpers into a huge `engine.js` file. If `engine.js` or `learningEngine.js` is created later, it must be a small Facade that coordinates focused modules, not a God file.
+
+Production direction:
+- UI calls engine/helper functions.
+- Engine/helper functions handle learning decisions.
+- Storage repository handles persistence.
+- Static data stays in `src/data`.
+
 ## Content Source Policy
 
 Use approved sources as references only. Create original English Loot app data inspired by reputable topics, meanings, formats, and learning methods.
